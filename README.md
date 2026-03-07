@@ -1,6 +1,8 @@
 # EHRGym
 
-![EHRGym Logo](ehrgym_logo.png)
+<p align="center">
+  <img src="ehrgym_logo.png" alt="EHRGym Logo" width="50%">
+</p>
 
 **EHRGym** is a containerized environment for training and evaluating computer-use agents in an Epic-like electronic health record (EHR) workflow.
 
