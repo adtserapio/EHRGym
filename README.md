@@ -7,7 +7,13 @@
 **EHRGym** is a containerized environment for training and evaluating computer-use agents in an Epic-like electronic health record (EHR) workflow.
 
 <p align="center">
-  <img src="hf_spaces_ui_demo.png" alt="EHRGym UI Demo" width="90%">
+  <a href="https://huggingface.co/spaces/openenv-community/EHRGym">
+    <img src="hf_spaces_ui_demo.png" alt="EHRGym UI Demo" width="90%">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://huggingface.co/spaces/openenv-community/EHRGym">🤗 Try the environment out on Hugging Face Spaces</a>
 </p>
 
 It combines:
