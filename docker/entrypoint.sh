@@ -14,6 +14,14 @@ export PORT="${PORT:-3000}"
 export EHR_BASE_URL="${EHR_BASE_URL:-http://127.0.0.1:${PORT}}"
 export EHRGYM_SERVER_URL="${EHRGYM_SERVER_URL:-http://127.0.0.1:8000}"
 
+# ── Start nginx FIRST so HF Spaces sees port 7860 open immediately ──
+if command -v nginx &>/dev/null && [[ -f /app/docker/nginx.conf ]]; then
+  echo "[entrypoint] Starting nginx reverse proxy on :7860 …"
+  nginx -c /app/docker/nginx.conf -g 'daemon off;' &
+  NGINX_PID=$!
+  echo "[entrypoint] nginx started (pid=$NGINX_PID)."
+fi
+
 # ── Database setup (only if DB file is missing) ──
 DB_PATH="/app/prisma/dev.db"
 if [[ ! -f "$DB_PATH" ]]; then
@@ -36,20 +44,12 @@ echo "[entrypoint] Starting Next.js EHR on :${PORT} …"
 npm run start --workspace @ehrgym/ehr -- --hostname 127.0.0.1 --port "$PORT" &
 EHR_PID=$!
 
-# ── Wait briefly for services to start ──
-sleep 3
-echo "[entrypoint] Services started (env=$ENV_SERVER_PID, ehr=$EHR_PID)."
+echo "[entrypoint] All services launched (nginx=$NGINX_PID, env=$ENV_SERVER_PID, ehr=$EHR_PID). EHRGym is ready."
 
-# ── Start nginx reverse-proxy on :7860 (the HF Spaces public port) ──
-if command -v nginx &>/dev/null && [[ -f /app/docker/nginx.conf ]]; then
-  echo "[entrypoint] Starting nginx reverse proxy on :7860 …"
-  nginx -c /app/docker/nginx.conf -g 'daemon off;' &
-  NGINX_PID=$!
-  echo "[entrypoint] nginx started (pid=$NGINX_PID). EHRGym is ready."
+# ── Wait on nginx (foreground process for Docker) ──
+if [[ -n "${NGINX_PID:-}" ]]; then
   wait "$NGINX_PID"
 else
-  # Fallback (local dev / docker-compose): no nginx, just wait on EHR
-  echo "[entrypoint] nginx not found — services on :${PORT} (EHR) and :8000 (env server)"
   wait "$EHR_PID"
 fi
 
