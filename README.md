@@ -1,14 +1,3 @@
----
-title: EHRGym
-emoji: 🏥
-colorFrom: blue
-colorTo: indigo
-sdk: docker
-app_port: 7860
-pinned: false
-short_description: Synthetic EHR environment for browser-based agents.
----
-
 # EHRGym
 
 <p align="center">
