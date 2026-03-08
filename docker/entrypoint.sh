@@ -9,7 +9,8 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 export DATABASE_URL="${DATABASE_URL:-file:/app/prisma/dev.db}"
-export EHR_BASE_URL="${EHR_BASE_URL:-http://127.0.0.1:3000}"
+export PORT="${PORT:-3000}"
+export EHR_BASE_URL="${EHR_BASE_URL:-http://127.0.0.1:${PORT}}"
 
 npx prisma generate
 npx prisma db push
@@ -18,4 +19,4 @@ npx prisma db seed
 uvicorn env_server.app.main:app --host 0.0.0.0 --port 8000 &
 ENV_SERVER_PID=$!
 
-npm run start --workspace @ehrgym/ehr -- --hostname 0.0.0.0 --port 3000
+npm run start --workspace @ehrgym/ehr -- --hostname 0.0.0.0 --port "$PORT"
