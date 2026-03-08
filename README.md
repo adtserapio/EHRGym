@@ -1,3 +1,22 @@
+---
+title: EHRGym
+emoji: 🏥
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+tags:
+  - openenv
+  - rl-environment
+  - ehr
+  - grpo
+  - trl
+  - clinical
+  - computer-use
+pinned: false
+license: apache-2.0
+---
+
 # EHRGym
 
 <p align="center">
