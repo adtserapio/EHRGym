@@ -1,3 +1,14 @@
+---
+title: EHRGym
+emoji: 🏥
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+short_description: Synthetic EHR environment for browser-based agents.
+---
+
 # EHRGym
 
 <p align="center">
@@ -329,6 +340,12 @@ This launches:
 4. Inspect `GET /state` for episode progress
 
 A starter agent loop is included in [scripts/example_agent.py](scripts/example_agent.py).
+
+### Demo tooling
+
+For offline trajectory replay and remote VLM rollouts over SSH, see [docs/remote-vlm-demo.md](docs/remote-vlm-demo.md).
+
+For offline dataset creation and SFT preparation, see [docs/offline-training.md](docs/offline-training.md).
 
 ---
 

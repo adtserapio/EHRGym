@@ -1,0 +1,33 @@
+{
+  "format": "ehrgym-trajectory.v1",
+  "created_at": "2026-03-08T07:56:40.840092+00:00",
+  "env_url": "http://127.0.0.1:8000",
+  "task_id": "aki-chart-review-demo",
+  "description": "Deterministic offline replay for an AKI chart-review, note, order, and sign workflow.",
+  "reset_request": {
+    "patient_id": "pat-1001"
+  },
+  "source_action_file": "/Users/serapioa/Documents/Career/Hackathons/EHRGym/tasks/examples/aki-demo-actions.json",
+  "steps_file": "steps.jsonl",
+  "screenshots_dir": "screenshots",
+  "final_state": {
+    "episode_id": "ef46df8f-cdb0-43f9-9675-1d1b0f13f42d",
+    "step_count": 20,
+    "patient_id": "pat-1001",
+    "encounter_id": "enc-1001",
+    "scenario_id": "scn-1001",
+    "rubric_progress": [
+      "required_orders",
+      "required_note_elements",
+      "encounter_signed"
+    ],
+    "cumulative_reward": 2.000000000000001
+  },
+  "final_info": {
+    "rubric_progress": [
+      "required_orders",
+      "required_note_elements",
+      "encounter_signed"
+    ]
+  }
+}

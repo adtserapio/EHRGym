@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
-import ehrgymIcon from "../../../ehrgym_icon.png";
 
 type AppBrandProps = {
   title: string;
@@ -13,9 +11,6 @@ type AppBrandProps = {
 export function AppBrand({ title, subtitle, href = "/", compact = false }: AppBrandProps) {
   const content = (
     <>
-      <span className={compact ? "app-brand__logo app-brand__logo--compact" : "app-brand__logo"} aria-hidden="true">
-        <Image src={ehrgymIcon} alt="" draggable={false} priority={compact ? false : true} />
-      </span>
       <span className={compact ? "app-brand__copy app-brand__copy--compact" : "app-brand__copy"}>
         <strong>{title}</strong>
         <span>{subtitle}</span>

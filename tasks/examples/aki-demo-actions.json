@@ -1,0 +1,98 @@
+{
+  "task_id": "aki-chart-review-demo",
+  "description": "Deterministic offline replay for an AKI chart-review, note, order, and sign workflow.",
+  "reset_request": {
+    "patient_id": "pat-1001"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1001']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='chart-tab-labs']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Demo Resident"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "AKI Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient feels weak and thirsty.\nO: Creatinine trend reviewed and worsening.\nA: AKI with concern for dehydration after volume assessment.\nP: Normal saline bolus now, Basic metabolic panel, and Plan for repeat labs."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 500
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Basic metabolic panel"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "repeat in 4 hours"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Trend renal function during AKI workup"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 500
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Normal saline bolus"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "1 L IV once"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Treat likely volume depletion contributing to AKI"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 500
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

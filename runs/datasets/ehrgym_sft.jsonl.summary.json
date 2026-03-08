@@ -1,0 +1,6 @@
+{
+  "trajectory_root": "/Users/serapioa/Documents/Career/Hackathons/EHRGym/runs/trajectories",
+  "output": "/Users/serapioa/Documents/Career/Hackathons/EHRGym/runs/datasets/ehrgym_sft.jsonl",
+  "examples": 20,
+  "image_mode": "path"
+}

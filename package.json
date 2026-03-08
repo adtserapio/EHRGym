@@ -7,8 +7,11 @@
   ],
   "scripts": {
     "dev": "concurrently -k -n ehr,env \"npm run dev:ehr\" \"npm run dev:env\"",
-    "dev:ehr": "npm run dev --workspace @ehrgym/ehr",
+    "dev:ehr": "npm run dev --workspace @ehrgym/ehr -- --hostname 0.0.0.0 --port 3000",
     "dev:env": "python3 -m uvicorn env_server.app.main:app --reload --host 0.0.0.0 --port 8000",
+    "watch": "concurrently -k -n ehr,env \"npm run watch:ehr\" \"npm run watch:env\"",
+    "watch:ehr": "npm run build --workspace @ehrgym/ehr && npm run start --workspace @ehrgym/ehr -- --hostname 0.0.0.0 --port 3000",
+    "watch:env": "PLAYWRIGHT_HEADLESS=false python3 -m uvicorn env_server.app.main:app --host 0.0.0.0 --port 8000",
     "clean:ehr": "npm run clean --workspace @ehrgym/ehr",
     "build:ehr": "npm run build --workspace @ehrgym/ehr",
     "typecheck": "npm run typecheck --workspace @ehrgym/ehr",

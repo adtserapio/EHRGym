@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "clean": "node -e \"require('fs').rmSync('.next', { recursive: true, force: true })\"",
-    "dev": "npm run clean && next dev --hostname 0.0.0.0 --port 3000",
+    "dev": "npm run clean && next dev",
     "build": "npm run clean && next build",
-    "start": "next start --hostname 0.0.0.0 --port 3000",
+    "start": "next start",
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {

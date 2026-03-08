@@ -23,6 +23,8 @@ downloads/
 eggs/
 .eggs/
 lib/
+!apps/ehr/lib/
+!apps/ehr/lib/**
 lib64/
 parts/
 sdist/

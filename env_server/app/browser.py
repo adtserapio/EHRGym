@@ -60,7 +60,15 @@ class BrowserSession:
         elif action.type == "click":
             if not action.selector:
                 raise ValueError("click action requires selector")
+            url_before = self.page.url
             await self.page.locator(action.selector).click()
+            # If the click triggered a navigation, wait for it to settle.
+            await asyncio.sleep(0.15)
+            if self.page.url != url_before:
+                try:
+                    await self.page.wait_for_load_state("networkidle", timeout=5000)
+                except Exception:  # noqa: BLE001
+                    pass
         elif action.type == "fill":
             if not action.selector:
                 raise ValueError("fill action requires selector")
@@ -81,7 +89,7 @@ class BrowserSession:
         if not self.page:
             raise RuntimeError("Browser session has not been started.")
 
-        screenshot = await self.page.screenshot(type="png", full_page=True)
+        screenshot = await self.page.screenshot(type="png")
         screenshot_b64 = base64.b64encode(screenshot).decode("utf-8")
         current_url = self.page.url
         active_activity = "/" if current_url.endswith(":3000/") else current_url.rsplit("/", 1)[-1]
