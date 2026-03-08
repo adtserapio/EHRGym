@@ -1,0 +1,36 @@
+{
+  "id": "acute-coronary-syndrome",
+  "title": "STEMI \u2014 anticoagulation and cardiac workup",
+  "patient_id": "pat-1004",
+  "encounter_id": "enc-1004",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review serial troponins and ECG findings, place heparin drip and echocardiogram, document the full ACS assessment including risk stratification, ECG interpretation, antiplatelet and anticoagulation rationale, and cardiology consultation, then sign the encounter.",
+  "required_orders": [
+    "Heparin drip",
+    "Echocardiogram"
+  ],
+  "required_note_elements": [
+    "Troponin trend",
+    "ECG interpretation",
+    "ST elevation",
+    "Chest pain characterization",
+    "TIMI risk score",
+    "Antiplatelet therapy",
+    "Cardiology consultation"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Heparin drip": 0.13,
+      "order:Echocardiogram": 0.05,
+      "note_element:Troponin trend": 0.1,
+      "note_element:ECG interpretation": 0.1,
+      "note_element:ST elevation": 0.08,
+      "note_element:Chest pain characterization": 0.08,
+      "note_element:TIMI risk score": 0.09,
+      "note_element:Antiplatelet therapy": 0.09,
+      "note_element:Cardiology consultation": 0.08,
+      "encounter_signed": 0.2
+    }
+  }
+}

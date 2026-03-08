@@ -1,0 +1,104 @@
+{
+  "task_id": "hepatic-encephalopathy-rollout",
+  "description": "Synthetic rollout for Hepatic encephalopathy \u2014 lactulose titration and rifaximin. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1016"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1016']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Family reports patient has been increasingly confused and sleepy over 2 days. Patient not making sense, unable to care for himself. Denies alcohol use recently. History of cirrhosis secondary to hepatitis C.\nO: Ammonia level 142 mcmol/L (elevated). Mental status changes: oriented to person only, asterixis present, unable to perform serial 7s. West Haven grade III (somnolent but arousable, markedly confused). Precipitant identification: UA positive for UTI, also recent constipation (last BM 4 days ago).\nA: Hepatic encephalopathy, West Haven grade III. Precipitants include UTI and constipation. Lactulose plan: aggressive titration to 3-4 bowel movements per day.\nP: Lactulose oral 30mL q2h until bowel movement, then titrate to 3-4 BMs/day. Rifaximin oral 550mg BID as adjunct. Treat UTI with ceftriaxone. Protein restriction is NOT recommended per current guidelines. Monitor ammonia trend. Fall precautions. Aspiration precautions given mental status."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Lactulose oral"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "PO, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Hepatic encephalopathy management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Rifaximin oral"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "PO, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Hepatic encephalopathy management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

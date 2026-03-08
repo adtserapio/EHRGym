@@ -1,0 +1,49 @@
+# EHRGym GRPO Training Configuration
+# ===================================
+# Usage:
+#   python scripts/train_grpo_trl.py --config configs/grpo_ehrgym.yaml
+#
+# With vLLM acceleration:
+#   accelerate launch scripts/train_grpo_trl.py --config configs/grpo_ehrgym.yaml
+
+# --- Model ---
+model_name_or_path: Qwen/Qwen3-0.6B
+# For larger models:  Qwen/Qwen3-1.7B, Qwen/Qwen3-4B
+
+# --- Output ---
+output_dir: runs/checkpoints/ehrgym-grpo-trl
+push_to_hub: false
+
+# --- Training ---
+max_steps: 500
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 4
+learning_rate: 1.0e-5
+lr_scheduler_type: linear
+warmup_ratio: 0.1
+weight_decay: 0.01
+bf16: true
+seed: 3407
+
+# --- GRPO-specific ---
+num_generations: 4
+max_completion_length: 1024
+temperature: 0.7
+loss_type: dapo
+scale_rewards: true
+max_tool_calling_iterations: 25
+
+# --- Logging ---
+logging_steps: 1
+log_completions: true
+report_to: none
+# report_to: wandb       # uncomment for W&B logging
+
+# --- Checkpointing ---
+save_steps: 50
+save_total_limit: 3
+
+# --- vLLM  (uncomment for GPU acceleration) ---
+# use_vllm: true
+# vllm_mode: colocate
+# vllm_gpu_memory_utilization: 0.4

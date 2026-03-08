@@ -1,0 +1,104 @@
+{
+  "task_id": "urosepsis-rollout",
+  "description": "Synthetic rollout for Urosepsis \u2014 SEP-1 bundle compliance. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1009"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1009']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient from nursing facility, found confused and febrile. Staff reports foul-smelling urine and decreased intake. History of recurrent UTIs and indwelling catheter.\nO: Sepsis criteria: SIRS-positive (temp 39.2, HR 118, WBC 18.4). Lactate level 4.2 mmol/L. Source identification: UA with >100 WBC, nitrite positive, leukocyte esterase 3+. Blood culture timing: 2 sets drawn prior to antibiotics. Hemodynamic response to fluids: MAP improved from 58 to 68 after 1L bolus.\nA: Urosepsis with septic shock (lactate >4 despite fluids). Antibiotic selection rationale: ceftriaxone IV for empiric gram-negative coverage, broad-spectrum appropriate given nursing facility residence and catheter. Reassessment plan: repeat lactate in 4 hours, assess fluid responsiveness.\nP: Ceftriaxone IV 2g now. Normal saline bolus 30 mL/kg (2L total). Norepinephrine if MAP <65 after fluids. Repeat lactate q4h. Foley catheter change. Urine and blood cultures pending. Reassessment plan: 6-hour sepsis bundle compliance check."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Ceftriaxone IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Urosepsis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Normal saline bolus"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "1L IV over 1 hour"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Urosepsis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

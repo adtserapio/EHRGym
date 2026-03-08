@@ -1,0 +1,104 @@
+{
+  "task_id": "acute-coronary-syndrome-rollout",
+  "description": "Synthetic rollout for STEMI \u2014 anticoagulation and cardiac workup. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1004"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1004']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports crushing substernal chest pain radiating to left arm, onset 2 hours ago at rest. Associated diaphoresis, nausea. Pain 8/10. Not relieved by rest.\nO: Troponin trend: 0.04 -> 2.8 -> 8.1 ng/mL (rising). ECG interpretation: ST elevation in leads II, III, aVF consistent with inferior MI. ST elevation >2mm in inferior leads. BP 108/72, HR 88, SpO2 97%. Chest pain characterization: typical angina with high-risk features.\nA: STEMI, inferior wall. TIMI risk score 5/7 (high risk). Cardiology consultation requested emergently for primary PCI.\nP: Heparin drip per ACS protocol. Antiplatelet therapy: aspirin 325mg and clopidogrel 600mg load given. Echocardiogram to assess wall motion and EF. NPO for potential cath. IV access x2. Continuous telemetry. Cardiology consultation for emergent catheterization."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Heparin drip"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "Per protocol, titrate to goal"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for STEMI management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Echocardiogram"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "IMAGING"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "Per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for STEMI management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

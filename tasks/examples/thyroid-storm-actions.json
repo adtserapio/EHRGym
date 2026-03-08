@@ -1,0 +1,104 @@
+{
+  "task_id": "thyroid-storm-rollout",
+  "description": "Synthetic rollout for Thyroid storm \u2014 multi-drug thyroid blockade and rate control. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1022"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1022']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient presents with agitation, fever, and palpitations. History of Graves' disease, stopped methimazole on her own 2 weeks ago. Husband reports progressive confusion.\nO: Thyroid hormone levels: free T4 5.8 ng/dL (markedly elevated), TSH <0.01. HR 142, irregular. Temp 39.8 C. Burch-Wartofsky score 55 (suggestive of thyroid storm). Precipitating event: medication non-compliance with methimazole discontinuation.\nA: Thyroid storm (Burch-Wartofsky >45). Anti-thyroid therapy: PTU preferred over methimazole in storm due to additional inhibition of T4-to-T3 conversion. Beta-blocker rationale: propranolol preferred for adrenergic symptom control AND additional inhibition of peripheral T4-to-T3 conversion. Temperature management: active cooling required.\nP: Propylthiouracil oral 200mg q4h loading. Propranolol IV 1mg q5-10 min until HR <100, then PO 60mg q6h. Beta-blocker rationale: propranolol for dual benefit of rate control and T4-to-T3 conversion block. SSKI (potassium iodide) after 1 hour of PTU loading. Hydrocortisone 100mg IV q8h (relative adrenal insufficiency). Temperature management: acetaminophen, cooling blanket. Avoid aspirin (displaces thyroid hormone from TBG). ICU admission."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Propylthiouracil oral"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "PO, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Thyroid storm management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Propranolol IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Thyroid storm management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

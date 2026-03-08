@@ -1,0 +1,104 @@
+{
+  "task_id": "aki-chart-review-rollout",
+  "description": "Synthetic rollout for AKI chart review \u2014 fluid resuscitation and renal monitoring. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1001"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1001']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports decreased oral intake over past 3 days, feeling weak and lightheaded. Denies dysuria, hematuria, or flank pain.\nO: Creatinine trend: 0.9 -> 1.4 -> 2.3 over 48 hours. Urine output 15 mL/hr over last 6 hours. BUN/Cr ratio elevated. Volume assessment: mucous membranes dry, skin tenting present, orthostatic positive. No peripheral edema.\nA: AKI stage 2 (KDIGO), likely prerenal. AKI differential diagnosis includes prerenal azotemia (most likely given volume depletion), ATN, and obstructive causes. FENa pending.\nP: IV normal saline bolus 1L now, then 125 mL/hr. Repeat basic metabolic panel in 4-6 hours. Strict I/Os. Hold nephrotoxins. Renal consult if no improvement in 24 hours."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Basic metabolic panel"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "LAB"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for AKI chart review management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Normal saline bolus"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "1L IV over 1 hour"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for AKI chart review management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

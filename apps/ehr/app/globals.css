@@ -1000,7 +1000,10 @@ select:focus-visible {
 }
 
 .workspace-profile--compact {
-  padding-left: 0;
+  padding: 8px 12px;
+  padding-left: 12px;
+  border: 1px solid #111111;
+  border-radius: 14px;
 }
 
 .workspace-profile__avatar {
@@ -1378,11 +1381,16 @@ select {
 .workspace-pills--wide a.is-active,
 .epic-tab--active,
 .epic-topbar__tabs .nav-link.is-active,
-.summary-flag--accent,
-.problem-list__status {
+.summary-flag--accent {
   background: #111111 !important;
   color: #ffffff !important;
   border-color: #111111 !important;
+}
+
+.problem-list__status {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border: 1px solid #e2e8f0 !important;
 }
 
 .status-pill[data-status="OPEN"],
@@ -1391,9 +1399,9 @@ select {
 .status-pill[data-status="SIGNED"],
 .status-pill[data-status="CLOSED"],
 .problem-list__status--muted {
-  background: transparent !important;
-  color: #111111 !important;
-  border: 1px solid #111111 !important;
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border: 1px solid #e2e8f0 !important;
 }
 
 .muted,
@@ -1616,6 +1624,11 @@ select {
 }
 
 .workspace-profile--panel .workspace-profile__avatar {
+  border: 1px solid #111111 !important;
+  border-radius: 999px;
+}
+
+.workspace-profile--compact .workspace-profile__avatar {
   border: 1px solid #111111 !important;
   border-radius: 999px;
 }

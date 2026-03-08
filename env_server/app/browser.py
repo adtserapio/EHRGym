@@ -72,7 +72,12 @@ class BrowserSession:
         elif action.type == "fill":
             if not action.selector:
                 raise ValueError("fill action requires selector")
-            await self.page.locator(action.selector).fill(action.text or "")
+            locator = self.page.locator(action.selector)
+            tag = await locator.evaluate("el => el.tagName")
+            if tag.upper() == "SELECT":
+                await locator.select_option(value=action.text or "")
+            else:
+                await locator.fill(action.text or "")
         elif action.type == "keypress":
             if not action.key:
                 raise ValueError("keypress action requires key")

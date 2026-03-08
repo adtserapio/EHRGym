@@ -1,0 +1,104 @@
+{
+  "task_id": "upper-gi-bleed-rollout",
+  "description": "Synthetic rollout for Upper GI bleed \u2014 transfusion and acid suppression. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1005"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1005']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports 3 episodes of hematemesis (coffee-ground emesis) and 2 melanotic stools since yesterday. Feels dizzy when standing.\nO: Hemoglobin trend: 10.2 -> 8.1 -> 7.4 g/dL over 12 hours. Hemodynamic status: HR 112, BP 92/58, orthostatic positive. Lactate 2.8. Glasgow-Blatchford score 14 (high risk, requires intervention). INR 1.1, platelets 185K.\nA: Acute upper GI hemorrhage with hemodynamic instability. Transfusion plan: transfuse below Hgb 7 threshold, target 7-9 g/dL. GI consultation indication: high Blatchford score, hemodynamic instability, and active bleeding require urgent endoscopy.\nP: Packed red blood cells 2 units, crossmatched and transfusing now. Pantoprazole IV 80mg bolus then 8mg/hr continuous infusion. NPO for EGD. Two large-bore IVs. Type and screen x4 units. GI consultation placed for urgent EGD."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Packed red blood cells"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "Per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Upper GI bleed management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Pantoprazole IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Upper GI bleed management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

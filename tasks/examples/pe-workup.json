@@ -1,0 +1,32 @@
+{
+  "id": "pe-workup",
+  "title": "PE \u2014 diagnostic imaging and empiric anticoagulation",
+  "patient_id": "pat-1008",
+  "encounter_id": "enc-1008",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review D-dimer and Wells criteria, place CTA chest and heparin drip, document the PE probability, hemodynamics, and anticoagulation rationale, then sign the encounter.",
+  "required_orders": [
+    "CT angiography chest",
+    "Heparin drip"
+  ],
+  "required_note_elements": [
+    "D-dimer elevation",
+    "Wells score",
+    "Hypoxia evaluation",
+    "Right heart strain",
+    "Anticoagulation plan"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:CT angiography chest": 0.13,
+      "order:Heparin drip": 0.13,
+      "note_element:D-dimer elevation": 0.1,
+      "note_element:Wells score": 0.12,
+      "note_element:Hypoxia evaluation": 0.1,
+      "note_element:Right heart strain": 0.1,
+      "note_element:Anticoagulation plan": 0.1,
+      "encounter_signed": 0.22
+    }
+  }
+}

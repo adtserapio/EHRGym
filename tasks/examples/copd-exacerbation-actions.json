@@ -1,0 +1,104 @@
+{
+  "task_id": "copd-exacerbation-rollout",
+  "description": "Synthetic rollout for COPD exacerbation \u2014 systemic steroids and bronchodilators. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1006"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1006']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports worsening dyspnea over 3 days, increased sputum production and purulence. Using home nebulizer without relief. Smoked 40 pack-years, quit 2 years ago.\nO: ABG interpretation: pH 7.30, pCO2 55, pO2 58, HCO3 27 \u2014 acute on chronic respiratory acidosis. Oxygen requirements: 3L NC to maintain SpO2 89-92%. RR 24, accessory muscle use noted. CXR with hyperinflation, no consolidation.\nA: Acute COPD exacerbation with respiratory acidosis. Likely infectious trigger given purulent sputum.\nP: Methylprednisolone IV 125mg now, then 60mg q6h. Albuterol nebulizer q4h standing + q2h PRN. Azithromycin for infectious trigger. Steroid plan: IV x 48h then transition to PO prednisone 40mg taper. BIPAP if worsening hypercapnia. ICU transfer if respiratory failure."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Methylprednisolone IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for COPD exacerbation management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Albuterol nebulizer"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "Per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for COPD exacerbation management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

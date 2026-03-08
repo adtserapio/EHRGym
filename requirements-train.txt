@@ -1,15 +1,20 @@
-# EHRGym training dependencies (Unsloth)
-# Install on H100 box:
+# EHRGym training dependencies (TRL GRPO)
+# Install on GPU box:
 #   pip install -r requirements-train.txt
 #
-# Or the bleeding-edge Unsloth from git:
-#   pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
+# For vLLM acceleration:
+#   pip install -r requirements-train.txt "trl[vllm]"
 
 torch>=2.4.0
-unsloth
-xformers
-trl>=0.12.0
+trl>=0.29.0
+transformers>=4.45.0
 datasets>=3.0.0
+accelerate>=1.0.0
+peft>=0.13.0
 bitsandbytes>=0.44.0
+httpx>=0.28.1
 wandb           # optional, for logging
-httpx           # needed for GRPO script to call EHRGym env server
+
+# Legacy Unsloth support (optional)
+# unsloth
+# xformers

@@ -1,0 +1,32 @@
+{
+  "id": "upper-gi-bleed",
+  "title": "Upper GI bleed \u2014 transfusion and acid suppression",
+  "patient_id": "pat-1005",
+  "encounter_id": "enc-1005",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review hemoglobin trend and coag panel, place PRBC transfusion and IV pantoprazole, document the bleed severity, hemodynamics, and GI consultation need, then sign the encounter.",
+  "required_orders": [
+    "Packed red blood cells",
+    "Pantoprazole IV"
+  ],
+  "required_note_elements": [
+    "Hemoglobin trend",
+    "Hemodynamic status",
+    "Glasgow-Blatchford score",
+    "Transfusion plan",
+    "GI consultation indication"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Packed red blood cells": 0.15,
+      "order:Pantoprazole IV": 0.08,
+      "note_element:Hemoglobin trend": 0.12,
+      "note_element:Hemodynamic status": 0.1,
+      "note_element:Glasgow-Blatchford score": 0.1,
+      "note_element:Transfusion plan": 0.1,
+      "note_element:GI consultation indication": 0.1,
+      "encounter_signed": 0.25
+    }
+  }
+}

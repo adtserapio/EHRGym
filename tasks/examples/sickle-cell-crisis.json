@@ -1,0 +1,32 @@
+{
+  "id": "sickle-cell-crisis",
+  "title": "Sickle cell VOC \u2014 pain management and ACS screening",
+  "patient_id": "pat-1023",
+  "encounter_id": "enc-1023",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review hemolysis markers and hemoglobin, place hydromorphone PCA (noting morphine allergy) and CXR for ACS screening, document the pain assessment, ACS evaluation, and transfusion threshold, then sign the encounter.",
+  "required_orders": [
+    "Hydromorphone PCA",
+    "Chest X-ray"
+  ],
+  "required_note_elements": [
+    "Hemoglobin baseline",
+    "Pain assessment",
+    "Acute chest syndrome screening",
+    "Morphine allergy and opioid selection",
+    "Transfusion threshold"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Hydromorphone PCA": 0.14,
+      "order:Chest X-ray": 0.09,
+      "note_element:Hemoglobin baseline": 0.1,
+      "note_element:Pain assessment": 0.12,
+      "note_element:Acute chest syndrome screening": 0.12,
+      "note_element:Morphine allergy and opioid selection": 0.1,
+      "note_element:Transfusion threshold": 0.1,
+      "encounter_signed": 0.23
+    }
+  }
+}

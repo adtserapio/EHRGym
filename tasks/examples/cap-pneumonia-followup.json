@@ -1,0 +1,26 @@
+{
+  "id": "cap-pneumonia-followup",
+  "title": "CAP \u2014 antibiotic stewardship and imaging follow-up",
+  "patient_id": "pat-1002",
+  "encounter_id": "enc-1002",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review the chest imaging and culture results, document the antibiotic course and respiratory status, order a follow-up chest X-ray, then sign the encounter.",
+  "required_orders": [
+    "Chest X-ray"
+  ],
+  "required_note_elements": [
+    "Antibiotic exposure",
+    "Respiratory symptoms",
+    "Follow-up plan"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Chest X-ray": 0.2,
+      "note_element:Antibiotic exposure": 0.2,
+      "note_element:Respiratory symptoms": 0.15,
+      "note_element:Follow-up plan": 0.15,
+      "encounter_signed": 0.3
+    }
+  }
+}

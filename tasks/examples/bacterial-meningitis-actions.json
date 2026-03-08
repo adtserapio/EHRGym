@@ -1,0 +1,104 @@
+{
+  "task_id": "bacterial-meningitis-rollout",
+  "description": "Synthetic rollout for Bacterial meningitis \u2014 empiric antibiotics and adjunctive steroids. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1024"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1024']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient is a 19-year-old college student presenting with severe headache, neck stiffness, and photophobia for 12 hours. Fever to 39.6 at home. Roommate reports she has been increasingly confused.\nO: CSF analysis: WBC 2200 cells/uL (97% PMN), protein 280, glucose 18. CSF glucose-to-serum ratio: 18/90 = 0.20 (markedly low, <0.4 supports bacterial etiology). Gram stain results: gram-negative diplococci seen, consistent with N. meningitidis. Meningeal signs: nuchal rigidity, positive Kernig and Brudzinski signs. Petechial rash on trunk.\nA: Acute bacterial meningitis, most likely Neisseria meningitidis. Empiric antibiotic rationale: ceftriaxone for CNS penetration and meningococcal coverage. Dexamethasone timing rationale: given BEFORE or with first dose of antibiotics to reduce inflammation and mortality (S. pneumoniae data extrapolated, continued per current guidelines). Droplet precautions: required for suspected N. meningitidis until 24 hours of effective antibiotic therapy.\nP: Ceftriaxone IV 2g q12h. Dexamethasone IV 0.15 mg/kg q6h x4 days (started before antibiotics). Dexamethasone timing rationale: optimal benefit when given before or with first antibiotic dose. Droplet precautions implemented. Close contacts require chemoprophylaxis with rifampin or ciprofloxacin. Public health notification for meningococcal disease. Repeat LP not needed if clinical improvement."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Ceftriaxone IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Bacterial meningitis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Dexamethasone IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Bacterial meningitis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

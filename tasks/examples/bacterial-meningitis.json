@@ -1,0 +1,36 @@
+{
+  "id": "bacterial-meningitis",
+  "title": "Bacterial meningitis \u2014 empiric antibiotics and adjunctive steroids",
+  "patient_id": "pat-1024",
+  "encounter_id": "enc-1024",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review CSF analysis (cell count, glucose, protein, Gram stain), place IV ceftriaxone and adjunctive dexamethasone, document the meningeal exam, CSF interpretation, Gram stain findings, empiric regimen rationale, dexamethasone timing, and isolation precautions, then sign the encounter.",
+  "required_orders": [
+    "Ceftriaxone IV",
+    "Dexamethasone IV"
+  ],
+  "required_note_elements": [
+    "CSF analysis",
+    "Meningeal signs",
+    "CSF glucose-to-serum ratio",
+    "Gram stain results",
+    "Empiric antibiotic rationale",
+    "Dexamethasone timing rationale",
+    "Droplet precautions"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Ceftriaxone IV": 0.14,
+      "order:Dexamethasone IV": 0.06,
+      "note_element:CSF analysis": 0.1,
+      "note_element:Meningeal signs": 0.09,
+      "note_element:CSF glucose-to-serum ratio": 0.08,
+      "note_element:Gram stain results": 0.08,
+      "note_element:Empiric antibiotic rationale": 0.09,
+      "note_element:Dexamethasone timing rationale": 0.08,
+      "note_element:Droplet precautions": 0.08,
+      "encounter_signed": 0.2
+    }
+  }
+}

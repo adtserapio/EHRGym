@@ -1,0 +1,104 @@
+{
+  "task_id": "new-onset-afib-rollout",
+  "description": "Synthetic rollout for New-onset AFib with RVR \u2014 rate control and stroke risk. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1011"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1011']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports palpitations, chest fluttering, and mild dizziness since yesterday. No syncope, chest pain, or dyspnea at rest. No prior history of arrhythmia.\nO: Heart rate 148 bpm, irregular. Rhythm interpretation: 12-lead ECG shows atrial fibrillation with rapid ventricular response, no ST changes. BP 128/82. CHA2DS2-VASc score: 4 (age 71, female, HTN, DM). TSH normal. K+ 3.2 (low). Mg 1.6 (low).\nA: New-onset atrial fibrillation with RVR. Hemodynamic stability: hemodynamically stable with preserved BP. Rate control strategy: IV diltiazem preferred given normal EF and no severe asthma. Anticoagulation decision: CHA2DS2-VASc 4 \u2014 anticoagulation strongly indicated for stroke prevention.\nP: Diltiazem IV 20mg bolus, then 10mg/hr drip titrated to HR <110. Potassium chloride IV 40 mEq for repletion. MgSO4 2g IV. Echocardiogram to assess EF and LA size. Start apixaban 5mg BID once rate controlled. Continuous telemetry."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Diltiazem IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for New-onset AFib with RVR management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Potassium chloride IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for New-onset AFib with RVR management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

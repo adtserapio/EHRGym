@@ -20,9 +20,15 @@ type HomePatient = {
     startedAt: Date;
   }>;
   scenarios: Array<{
+    title: string;
     objective: string;
   }>;
 };
+
+function cleanObjective(objective: string): string {
+  const stripped = objective.replace(/^As the attending physician,\s*/i, "");
+  return stripped.charAt(0).toUpperCase() + stripped.slice(1);
+}
 
 export default async function HomePage() {
   const patients: HomePatient[] = await prisma.patient.findMany({
@@ -43,6 +49,7 @@ export default async function HomePage() {
   const leadEncounter = leadPatient?.encounters[0];
   const leadFlags = leadPatient ? parseJsonValue<string[]>(leadPatient.bannerFlagsJson) : [];
   const openCount = patients.filter((patient) => patient.encounters[0]?.status === "OPEN").length;
+  const signedCount = patients.length - openCount;
 
   return (
     <main className="dashboard-shell">
@@ -77,20 +84,20 @@ export default async function HomePage() {
           <div className="workspace-profile workspace-profile--panel">
             <div className="workspace-profile__avatar">PS</div>
             <div>
-              <strong>Patrick Sullivan</strong>
-              <p>RN</p>
+              <strong>Patrick Sullivan, MD</strong>
+              <p>Attending Physician</p>
             </div>
           </div>
         </header>
 
         <section className="metric-grid">
-          <SectionCard title="Open Charts" subtitle="Ready for review" className="metric-card">
-            <div className="metric-card__value">{openCount}</div>
-            <p>{patients.length} total patients on service</p>
+          <SectionCard title="My Patients" subtitle="Current census" className="metric-card">
+            <div className="metric-card__value">{patients.length}</div>
+            <p>{openCount} charts in progress · {signedCount} signed</p>
           </SectionCard>
-          <SectionCard title="Orders Pending" subtitle="Awaiting attention" className="metric-card">
-            <div className="metric-card__value">{leadEncounter?.status === "OPEN" ? "1/3" : "0/3"}</div>
-            <p>Prioritize chart completion before sign-off.</p>
+          <SectionCard title="Charts to Complete" subtitle="Awaiting documentation" className="metric-card">
+            <div className="metric-card__value">{openCount}</div>
+            <p>{openCount === 0 ? "All charts signed" : `${openCount} visit${openCount !== 1 ? "s" : ""} need notes, orders, or sign-off`}</p>
           </SectionCard>
           <SectionCard title="Next Review" subtitle="Current focus" className="metric-card metric-card--wide">
             <div className="metric-card__stack">
@@ -103,6 +110,22 @@ export default async function HomePage() {
 
         <div className="content-grid content-grid--home">
           <div className="content-stack">
+            <SectionCard title="Handoff Notes" subtitle="Overnight updates from covering team">
+              <div id="recent-activity" />
+              <div className="note-list">
+                <article className="note-row">
+                  <header>
+                    <div>
+                      <h3>Night Float Signout</h3>
+                      <p className="muted">Cross-cover · Dr. R. Kimura</p>
+                    </div>
+                    <span className="muted">06:45 AM</span>
+                  </header>
+                  <p>Quiet overnight. No acute events. See patient list for pending labs and AM vitals. Two patients with new abnormal results flagged for your review.</p>
+                </article>
+              </div>
+            </SectionCard>
+
             <SectionCard title="Patient List" subtitle="Select a patient to enter the chart" testId="patient-list">
               <div id="patient-list-section" />
               <div className="ehr-table__header">
@@ -146,33 +169,9 @@ export default async function HomePage() {
                       </div>
                       <div>
                         <strong>{encounter ? formatDateTime(encounter.startedAt) : "Pending"}</strong>
-                        <p className="muted">{scenario ? scenario.objective : flags.join(" · ")}</p>
+                        <p className="muted">{scenario ? cleanObjective(scenario.objective) : flags.join(" · ")}</p>
                       </div>
                     </Link>
-                  );
-                })}
-              </div>
-            </SectionCard>
-
-            <SectionCard title="Recent Chart Activity" subtitle="Review recent notes and care context">
-              <div id="recent-activity" />
-              <div className="note-list">
-                {patients.slice(0, 2).map((patient) => {
-                  const encounter = patient.encounters[0];
-                  const scenario = patient.scenarios[0];
-
-                  return (
-                    <article key={patient.id} className="note-row">
-                      <header>
-                        <div>
-                          <h3>{patient.fullName}</h3>
-                          <p className="muted">{encounter?.reasonForVisit ?? "No encounter"}</p>
-                        </div>
-                        <span className="muted">{encounter ? formatDateTime(encounter.startedAt) : "Pending"}</span>
-                      </header>
-                      <p>{patient.summary}</p>
-                      {scenario ? <span className="summary-flag">{scenario.objective}</span> : null}
-                    </article>
                   );
                 })}
               </div>
@@ -210,20 +209,21 @@ export default async function HomePage() {
             <SectionCard title="Today’s Tasks" subtitle="Priority items for chart completion" className="section-card--summary">
               <div id="today-tasks" />
               <div className="task-list">
-                <div className="task-list__item">
-                  <span className="task-list__check" />
-                  <div>
-                    <strong>Review latest labs before signing</strong>
-                    <p className="muted">Abnormal values are highlighted in chart review.</p>
-                  </div>
-                </div>
-                <div className="task-list__item">
-                  <span className="task-list__check" />
-                  <div>
-                    <strong>Complete progress note and order entry</strong>
-                    <p className="muted">Orders can remain draft or move directly to signature.</p>
-                  </div>
-                </div>
+                {patients
+                  .filter((p) => p.encounters[0]?.status === "OPEN" && p.scenarios[0])
+                  .slice(0, 5)
+                  .map((p) => {
+                    const scenario = p.scenarios[0];
+                    return (
+                      <Link key={p.id} href={`/patient/${p.id}`} className="task-list__item">
+                        <span className="task-list__check" />
+                        <div>
+                          <strong>{p.fullName}</strong>
+                          <p className="muted">{scenario.title}</p>
+                        </div>
+                      </Link>
+                    );
+                  })}
               </div>
             </SectionCard>
           </aside>

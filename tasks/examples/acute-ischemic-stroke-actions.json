@@ -1,0 +1,104 @@
+{
+  "task_id": "acute-ischemic-stroke-rollout",
+  "description": "Synthetic rollout for Acute ischemic stroke \u2014 thrombolysis decision. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1013"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1013']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient brought by EMS with sudden-onset right-sided weakness and difficulty speaking. Wife witnessed onset at 14:30, called 911 immediately.\nO: NIHSS score 14 (moderate-severe deficit). Time last known well: 90 minutes ago. CT head interpretation: no hemorrhage, no early ischemic changes, ASPECTS 9. INR 1.0, platelets 210K, glucose 142. tPA contraindication screen: no recent surgery, no bleeding, no anticoagulation, no prior ICH. tPA eligibility: eligible \u2014 within 4.5-hour window, NIHSS >4, no exclusion criteria. Blood pressure management: BP 172/94, acceptable for thrombolysis (below 185/110).\nA: Acute ischemic stroke, left MCA territory. Patient is tPA eligible. Neurology consultation: neurology at bedside, agrees with thrombolysis.\nP: Alteplase IV 0.9 mg/kg (10% bolus, 90% over 60 min). CT angiography head and neck for large vessel occlusion evaluation. BP monitoring q15 min during infusion. Admit to neuro ICU. Hold anticoagulation and antiplatelets for 24 hours. Repeat CT head at 24 hours. Neurology consultation for ongoing management."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Alteplase IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Acute ischemic stroke management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "CT angiography head and neck"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "IMAGING"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Acute ischemic stroke management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

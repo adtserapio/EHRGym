@@ -1,0 +1,32 @@
+{
+  "id": "chf-exacerbation",
+  "title": "CHF exacerbation \u2014 IV diuresis and volume management",
+  "patient_id": "pat-1007",
+  "encounter_id": "enc-1007",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review BNP, electrolytes, and daily weights, place IV furosemide and renal monitoring, document the volume overload assessment and diuresis strategy, then sign the encounter.",
+  "required_orders": [
+    "Furosemide IV",
+    "Basic metabolic panel"
+  ],
+  "required_note_elements": [
+    "Volume status",
+    "BNP level",
+    "Daily weight trend",
+    "Ejection fraction",
+    "Diuretic plan"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Furosemide IV": 0.15,
+      "order:Basic metabolic panel": 0.07,
+      "note_element:Volume status": 0.13,
+      "note_element:BNP level": 0.1,
+      "note_element:Daily weight trend": 0.1,
+      "note_element:Ejection fraction": 0.1,
+      "note_element:Diuretic plan": 0.12,
+      "encounter_signed": 0.23
+    }
+  }
+}

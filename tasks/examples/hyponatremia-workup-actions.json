@@ -1,0 +1,104 @@
+{
+  "task_id": "hyponatremia-workup-rollout",
+  "description": "Synthetic rollout for Severe hyponatremia \u2014 SIADH diagnosis and safe correction. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1012"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1012']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports 4 days of progressive confusion, headache, and nausea. Family notes increasing lethargy. No recent medication changes. Decreased fluid intake.\nO: Sodium level 118 mEq/L. Serum osmolality 248 mOsm/kg (hypotonic). Urine osmolality 580 mOsm/kg (inappropriately concentrated). Urine sodium 45 mEq/L (elevated). Volume status classification: euvolemic \u2014 no edema, no signs of dehydration, normal JVP. SIADH assessment: meets criteria (euvolemic hypotonic hyponatremia with inappropriately concentrated urine and elevated urine sodium, TSH and cortisol normal).\nA: Severe symptomatic hypotonic hyponatremia secondary to SIADH. CT head negative for mass. Correction rate goal: raise sodium no more than 8 mEq/L in first 24 hours to prevent osmotic demyelination syndrome.\nP: Sodium chloride 3% IV at 30 mL/hr. Basic metabolic panel q4h for sodium monitoring. Correction rate goal: target Na 124-126 by 24 hours. Fluid restriction 1L/day. Desmopressin rescue available if overcorrection. Neurology consult for altered mental status."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Sodium chloride 3% IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Severe hyponatremia management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Basic metabolic panel"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "LAB"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Severe hyponatremia management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

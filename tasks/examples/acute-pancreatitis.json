@@ -1,0 +1,32 @@
+{
+  "id": "acute-pancreatitis",
+  "title": "Acute pancreatitis \u2014 aggressive hydration and imaging",
+  "patient_id": "pat-1010",
+  "encounter_id": "enc-1010",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review lipase and severity markers, place aggressive fluid resuscitation and CT imaging, document the etiology workup, severity scoring, and nutrition plan, then sign the encounter.",
+  "required_orders": [
+    "Lactated Ringer bolus",
+    "CT abdomen with contrast"
+  ],
+  "required_note_elements": [
+    "Lipase elevation",
+    "Gallstone evaluation",
+    "Ranson criteria",
+    "Fluid management",
+    "NPO and nutrition plan"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Lactated Ringer bolus": 0.13,
+      "order:CT abdomen with contrast": 0.1,
+      "note_element:Lipase elevation": 0.12,
+      "note_element:Gallstone evaluation": 0.1,
+      "note_element:Ranson criteria": 0.1,
+      "note_element:Fluid management": 0.1,
+      "note_element:NPO and nutrition plan": 0.1,
+      "encounter_signed": 0.25
+    }
+  }
+}

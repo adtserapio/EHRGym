@@ -1,0 +1,28 @@
+{
+  "id": "mrsa-cellulitis",
+  "title": "MRSA cellulitis \u2014 empiric coverage with allergy consideration",
+  "patient_id": "pat-1014",
+  "encounter_id": "enc-1014",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review inflammatory markers and drug allergies, place vancomycin and wound culture orders, document the MRSA risk, antibiotic choice, and allergy consideration, then sign the encounter.",
+  "required_orders": [
+    "Vancomycin IV",
+    "Wound culture"
+  ],
+  "required_note_elements": [
+    "MRSA risk factors",
+    "Antibiotic selection",
+    "Allergy consideration"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Vancomycin IV": 0.18,
+      "order:Wound culture": 0.12,
+      "note_element:MRSA risk factors": 0.15,
+      "note_element:Antibiotic selection": 0.15,
+      "note_element:Allergy consideration": 0.12,
+      "encounter_signed": 0.28
+    }
+  }
+}

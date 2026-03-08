@@ -1,0 +1,34 @@
+{
+  "id": "asthma-exacerbation",
+  "title": "Severe asthma \u2014 IV magnesium and systemic steroids",
+  "patient_id": "pat-1019",
+  "encounter_id": "enc-1019",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review ABG (noting ominous normal pCO2), peak flow, and accessory muscle use, place IV magnesium and systemic steroids, document the severity classification, bronchodilator response, intubation readiness, and ICU escalation criteria, then sign the encounter.",
+  "required_orders": [
+    "Magnesium sulfate IV",
+    "Methylprednisolone IV"
+  ],
+  "required_note_elements": [
+    "Peak flow",
+    "ABG with pCO2 interpretation",
+    "Accessory muscle use",
+    "Steroid therapy",
+    "Bronchodilator response",
+    "Intubation readiness"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Magnesium sulfate IV": 0.12,
+      "order:Methylprednisolone IV": 0.12,
+      "note_element:Peak flow": 0.09,
+      "note_element:ABG with pCO2 interpretation": 0.1,
+      "note_element:Accessory muscle use": 0.08,
+      "note_element:Steroid therapy": 0.09,
+      "note_element:Bronchodilator response": 0.09,
+      "note_element:Intubation readiness": 0.1,
+      "encounter_signed": 0.21
+    }
+  }
+}

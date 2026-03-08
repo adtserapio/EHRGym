@@ -1,0 +1,58 @@
+{
+  "format": "ehrgym-trajectory.v1",
+  "created_at": "2026-03-08T17:19:13.926651+00:00",
+  "env_url": "http://127.0.0.1:8000",
+  "task_id": "dka-management-rollout",
+  "description": "Synthetic rollout for DKA \u2014 insulin protocol and anion-gap monitoring. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1003"
+  },
+  "source_action_file": "/Users/serapioa/Documents/Career/Hackathons/EHRGym/tasks/examples/dka-management-actions.json",
+  "steps_file": "steps.jsonl",
+  "screenshots_dir": "screenshots",
+  "final_state": {
+    "episode_id": "690d40e6-b47a-4c4d-a4c1-82d6604ab4ad",
+    "step_count": 21,
+    "patient_id": "pat-1003",
+    "encounter_id": "enc-1003",
+    "scenario_id": "scn-1003",
+    "task_id": null,
+    "rubric_progress": [
+      "order:Insulin drip",
+      "order:Basic metabolic panel",
+      "note_element:Anion gap",
+      "note_element:Blood glucose level",
+      "note_element:Serum bicarbonate",
+      "note_element:Fluid resuscitation",
+      "note_element:Insulin management",
+      "note_element:DKA precipitant",
+      "note_element:Potassium monitoring",
+      "encounter_signed"
+    ],
+    "cumulative_reward": 2.8400000000000007
+  },
+  "final_info": {
+    "rubric_progress": [
+      "order:Insulin drip",
+      "order:Basic metabolic panel",
+      "note_element:Anion gap",
+      "note_element:Blood glucose level",
+      "note_element:Serum bicarbonate",
+      "note_element:Fluid resuscitation",
+      "note_element:Insulin management",
+      "note_element:DKA precipitant",
+      "note_element:Potassium monitoring",
+      "encounter_signed"
+    ],
+    "new_rubric_items": [
+      "encounter_signed",
+      "order:Insulin drip"
+    ],
+    "reward_breakdown": {
+      "action": 0.05,
+      "step_penalty": -0.01,
+      "rubric_progress": 0.2,
+      "completion": 1.0
+    }
+  }
+}

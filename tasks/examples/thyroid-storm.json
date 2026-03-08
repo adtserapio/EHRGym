@@ -1,0 +1,34 @@
+{
+  "id": "thyroid-storm",
+  "title": "Thyroid storm \u2014 multi-drug thyroid blockade and rate control",
+  "patient_id": "pat-1022",
+  "encounter_id": "enc-1022",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review TSH, free T4/T3, and vital sign instability, place PTU and IV propranolol for dual blockade and rate control, document the Burch-Wartofsky score, anti-thyroid therapy, rate control rationale, temperature management, and precipitant, then sign the encounter.",
+  "required_orders": [
+    "Propylthiouracil oral",
+    "Propranolol IV"
+  ],
+  "required_note_elements": [
+    "Thyroid hormone levels",
+    "Burch-Wartofsky score",
+    "Anti-thyroid therapy",
+    "Beta-blocker rationale",
+    "Temperature management",
+    "Precipitating event"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Propylthiouracil oral": 0.12,
+      "order:Propranolol IV": 0.12,
+      "note_element:Thyroid hormone levels": 0.1,
+      "note_element:Burch-Wartofsky score": 0.11,
+      "note_element:Anti-thyroid therapy": 0.09,
+      "note_element:Beta-blocker rationale": 0.08,
+      "note_element:Temperature management": 0.08,
+      "note_element:Precipitating event": 0.09,
+      "encounter_signed": 0.21
+    }
+  }
+}

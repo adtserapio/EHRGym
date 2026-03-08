@@ -1,0 +1,104 @@
+{
+  "task_id": "postop-ileus-rollout",
+  "description": "Synthetic rollout for Post-op ileus \u2014 decompression and electrolyte correction. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1025"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1025']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient is post-operative day 3 from right hemicolectomy. Reports progressive abdominal bloating, nausea, and has not passed gas or had a bowel movement since surgery.\nO: Bowel function status: absent bowel sounds, abdomen distended and tympanitic, no flatus, no BM since surgery. KUB: dilated loops of small bowel with air-fluid levels, no free air. Electrolyte correction needed: K 3.1, Mg 1.5 (both low \u2014 can worsen ileus). NPO status: patient remained NPO, tolerating only ice chips.\nA: Post-operative ileus, POD 3. No signs of anastomotic leak (afebrile, lactate normal, no peritoneal signs). Electrolyte correction: hypokalemia and hypomagnesemia may be contributing to ileus and need aggressive correction.\nP: Nasogastric tube placement for decompression. Potassium chloride IV 40 mEq in 100mL over 4 hours. MgSO4 2g IV. NPO status maintained. Ambulation encouraged. Hold opioids, switch to acetaminophen/ketorolac for pain. Reassess bowel function in 24 hours. If no improvement in 48h, consider CT to rule out mechanical obstruction."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Nasogastric tube placement"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "Standard placement, low intermittent suction"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Post-op ileus management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Potassium chloride IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Post-op ileus management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

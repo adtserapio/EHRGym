@@ -1,0 +1,104 @@
+{
+  "task_id": "hip-fracture-rollout",
+  "description": "Synthetic rollout for Hip fracture \u2014 anticoagulation reversal for surgical clearance. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1018"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1018']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient fell at home, unable to bear weight on left leg. On warfarin for atrial fibrillation. Last dose was this morning.\nO: X-ray confirms left intertrochanteric hip fracture. INR 3.8 (supratherapeutic). Fracture type: intertrochanteric, stable pattern. Anticoagulation reversal needed prior to surgical fixation. Hemoglobin 11.2, otherwise pre-op labs within normal limits.\nA: Left intertrochanteric hip fracture requiring operative fixation. Anticoagulation reversal: supratherapeutic INR requires correction before surgery. Surgical planning: target INR <1.5 for safe operative intervention.\nP: Vitamin K IV 10mg for INR reversal. Orthopedic surgery consult for operative planning. Pain management with femoral nerve block. DVT prophylaxis with mechanical compression (hold chemical prophylaxis). Repeat INR in 6 hours. Surgical planning: target surgery within 24-48 hours once INR corrected."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Vitamin K IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Hip fracture management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Orthopedic surgery consult"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "Urgent, please evaluate"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Hip fracture management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

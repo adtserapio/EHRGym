@@ -1,0 +1,104 @@
+{
+  "task_id": "acute-pancreatitis-rollout",
+  "description": "Synthetic rollout for Acute pancreatitis \u2014 aggressive hydration and imaging. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1010"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1010']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports severe epigastric pain radiating to the back, onset after a large meal with alcohol. Nausea with multiple episodes of vomiting. Unable to eat.\nO: Lipase elevation: 1840 U/L (>3x ULN). Gallstone evaluation: RUQ ultrasound shows cholelithiasis without CBD dilation. ALT mildly elevated. Ranson criteria at admission: WBC 14.2, glucose 220, age >55 = 3 criteria (moderate severity). Calcium 8.1, LDH 350.\nA: Acute gallstone pancreatitis, moderate severity by Ranson criteria. Fluid management is priority to prevent pancreatic necrosis. NPO and nutrition plan: NPO initially, advance to low-fat diet as pain improves and lipase trends down.\nP: Lactated Ringer bolus 1L now, then 250 mL/hr aggressive hydration. CT abdomen with contrast to evaluate for necrosis or complications. Pain control with IV hydromorphone. NPO and nutrition plan: advance diet as tolerated. Surgical consult for cholecystectomy during this admission once pancreatitis resolves."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Lactated Ringer bolus"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "IMAGING"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "1L IV over 1 hour"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Acute pancreatitis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "CT abdomen with contrast"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "IMAGING"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Acute pancreatitis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

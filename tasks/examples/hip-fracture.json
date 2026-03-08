@@ -1,0 +1,28 @@
+{
+  "id": "hip-fracture",
+  "title": "Hip fracture \u2014 anticoagulation reversal for surgical clearance",
+  "patient_id": "pat-1018",
+  "encounter_id": "enc-1018",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review the fracture imaging and supratherapeutic INR, place vitamin K reversal and orthopedic consult, document the fracture type, reversal plan, and surgical disposition, then sign the encounter.",
+  "required_orders": [
+    "Vitamin K IV",
+    "Orthopedic surgery consult"
+  ],
+  "required_note_elements": [
+    "Fracture type",
+    "Anticoagulation reversal",
+    "Surgical planning"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Vitamin K IV": 0.18,
+      "order:Orthopedic surgery consult": 0.14,
+      "note_element:Fracture type": 0.15,
+      "note_element:Anticoagulation reversal": 0.13,
+      "note_element:Surgical planning": 0.12,
+      "encounter_signed": 0.28
+    }
+  }
+}

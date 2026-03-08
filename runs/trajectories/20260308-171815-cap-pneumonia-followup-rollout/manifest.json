@@ -1,0 +1,48 @@
+{
+  "format": "ehrgym-trajectory.v1",
+  "created_at": "2026-03-08T17:18:20.627477+00:00",
+  "env_url": "http://127.0.0.1:8000",
+  "task_id": "cap-pneumonia-followup-rollout",
+  "description": "Synthetic rollout for CAP \u2014 antibiotic stewardship and imaging follow-up. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1002"
+  },
+  "source_action_file": "/Users/serapioa/Documents/Career/Hackathons/EHRGym/tasks/examples/cap-pneumonia-followup-actions.json",
+  "steps_file": "steps.jsonl",
+  "screenshots_dir": "screenshots",
+  "final_state": {
+    "episode_id": "d34df9da-d2fe-409a-85f1-7355ff622dad",
+    "step_count": 15,
+    "patient_id": "pat-1002",
+    "encounter_id": "enc-1002",
+    "scenario_id": "scn-1002",
+    "task_id": null,
+    "rubric_progress": [
+      "order:Chest X-ray",
+      "note_element:Antibiotic exposure",
+      "note_element:Respiratory symptoms",
+      "note_element:Follow-up plan",
+      "encounter_signed"
+    ],
+    "cumulative_reward": 2.1000000000000005
+  },
+  "final_info": {
+    "rubric_progress": [
+      "order:Chest X-ray",
+      "note_element:Antibiotic exposure",
+      "note_element:Respiratory symptoms",
+      "note_element:Follow-up plan",
+      "encounter_signed"
+    ],
+    "new_rubric_items": [
+      "encounter_signed",
+      "order:Chest X-ray"
+    ],
+    "reward_breakdown": {
+      "action": 0.05,
+      "step_penalty": -0.01,
+      "rubric_progress": 0.2,
+      "completion": 1.0
+    }
+  }
+}

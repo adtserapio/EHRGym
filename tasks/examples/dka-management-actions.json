@@ -1,0 +1,104 @@
+{
+  "task_id": "dka-management-rollout",
+  "description": "Synthetic rollout for DKA \u2014 insulin protocol and anion-gap monitoring. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1003"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1003']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient brought in by family, confused and vomiting for 2 days. Missed insulin doses. Reports polyuria and polydipsia.\nO: Blood glucose level 487 mg/dL. Anion gap 28 (Na 138 - Cl 98 - HCO3 12). Serum bicarbonate 12 mEq/L. pH 7.18 on VBG. Potassium 5.2 (likely spurious in setting of acidosis). Phosphate low. Ketones large in urine and serum.\nA: DKA, severe (pH <7.2, bicarb <15, anion gap >25). DKA precipitant: medication non-compliance, assess for infection. Potassium monitoring critical as insulin will shift K intracellularly.\nP: Insulin drip per DKA protocol (0.1 units/kg/hr after bolus). Fluid resuscitation: NS 1L bolus then 500 mL/hr. Basic metabolic panel q2h. Potassium chloride 20 mEq in each liter when K <5.0. Insulin management: transition to subQ when anion gap closes and patient tolerating PO. Monitor for cerebral edema."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Insulin drip"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "Per protocol, titrate to goal"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for DKA management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Basic metabolic panel"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "LAB"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for DKA management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

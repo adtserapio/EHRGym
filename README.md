@@ -1,10 +1,34 @@
+---
+title: EHRGym
+emoji: 🏥
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+tags:
+  - openenv
+  - rl-environment
+  - ehr
+  - grpo
+  - trl
+  - clinical
+  - computer-use
+pinned: false
+license: apache-2.0
+---
+
 # EHRGym
 
 <p align="center">
   <img src="ehrgym_logo.png" alt="EHRGym Logo" width="50%">
 </p>
 
-**EHRGym** is a containerized environment for training and evaluating computer-use agents in an Epic-like electronic health record (EHR) workflow.
+[![OpenEnv](https://img.shields.io/badge/OpenEnv-EHRGym-blue?logo=huggingface)](https://huggingface.co/spaces/openenv-community/EHRGym)
+[![TRL GRPO](https://img.shields.io/badge/TRL-GRPO%20Training-orange?logo=huggingface)](https://huggingface.co/docs/trl/grpo_trainer)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adtserapio/EHRGym/blob/main/notebooks/ehrgym_grpo_training.ipynb)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
+
+**EHRGym** is an [OpenEnv](https://huggingface.co/openenv-community)-compatible environment for training and evaluating computer-use agents in an Epic-like electronic health record (EHR) workflow. It integrates natively with [TRL](https://github.com/huggingface/trl)'s `GRPOTrainer` for GRPO fine-tuning.
 
 <p align="center">
   <a href="https://huggingface.co/spaces/openenv-community/EHRGym">
@@ -43,6 +67,7 @@ The environment exposes `reset()`, `step(action)`, and a `state` object so an ag
 - [Logging & evaluation](#logging--evaluation)
 - [Repository layout (proposed)](#repository-layout-proposed)
 - [Quickstart (placeholder)](#quickstart-placeholder)
+- [GRPO Training with TRL](#grpo-training-with-trl)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -251,13 +276,16 @@ Baseline approach:
 
 ```
 apps/ehr/            Next.js EHR UI (TypeScript)
+ehrgym/              OpenEnv Python client + TRL reward functions
+notebooks/           Starter notebook for GRPO training
 env_server/          FastAPI OpenEnv server + Playwright control
-tasks/               scenario specs, rubrics, fixtures
-synthetic/           Synthea generation + FHIR ingest + seed tooling
+tasks/               scenario specs, rubrics, fixtures (25 tasks)
+configs/             GRPO training configs (YAML + DeepSpeed)
+scripts/             TRL training script, agents, trajectory tools
 prisma/              schema + migrations
 docker/              Dockerfiles + entrypoints
 shared/              synthetic seed definitions + reset helpers
-scripts/             example agent loop and local helpers
+synthetic/           Synthea generation + FHIR ingest + seed tooling
 ```
 
 ---
@@ -345,6 +373,139 @@ A starter agent loop is included in [scripts/example_agent.py](scripts/example_a
 For offline trajectory replay and remote VLM rollouts over SSH, see [docs/remote-vlm-demo.md](docs/remote-vlm-demo.md).
 
 For offline dataset creation and SFT preparation, see [docs/offline-training.md](docs/offline-training.md).
+
+---
+
+## GRPO Training with TRL
+
+EHRGym integrates with TRL's `GRPOTrainer` using the [OpenEnv](https://huggingface.co/docs/trl/openenv) `rollout_func` pattern for agent training. The model learns to navigate the EHR, place orders, write notes, and sign encounters through multi-turn browser interaction.
+
+### Starter notebook (recommended)
+
+The fastest way to get started is the end-to-end training notebook:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adtserapio/EHRGym/blob/main/notebooks/ehrgym_grpo_training.ipynb)
+
+The notebook covers:
+- Connecting to the hosted EHRGym Space (zero setup)
+- Defining a `rollout_func` with `generate_rollout_completions` for multi-turn EHR interaction
+- Three reward signals: clinical rubric, action format, and step efficiency
+- Training with vLLM-accelerated GRPO on Qwen3-1.7B
+- Evaluating the fine-tuned model on clinical tasks
+
+See [`notebooks/ehrgym_grpo_training.ipynb`](notebooks/ehrgym_grpo_training.ipynb) for the full walkthrough.
+
+### Quick start (CLI)
+
+```bash
+# 1. Start the EHRGym environment
+npm run dev
+
+# 2. Install training dependencies
+pip install "trl[vllm]" git+https://github.com/adtserapio/EHRGym.git
+
+# 3. Run GRPO training (single GPU, smoke test)
+python scripts/train_grpo_trl.py \
+    --model_name_or_path Qwen/Qwen3-0.6B \
+    --output_dir runs/checkpoints/ehrgym-grpo-trl \
+    --max_steps 50 \
+    --num_generations 2 \
+    --max_completion_length 512
+```
+
+### With vLLM acceleration
+
+```bash
+accelerate launch \
+    --config_file configs/deepspeed_zero2.yaml \
+    scripts/train_grpo_trl.py \
+    --model_name_or_path Qwen/Qwen3-1.7B \
+    --output_dir runs/checkpoints/ehrgym-grpo-trl \
+    --use_vllm True \
+    --vllm_mode colocate \
+    --max_steps 500 \
+    --num_generations 4 \
+    --max_completion_length 1024 \
+    --report_to wandb
+```
+
+### Using the config file
+
+```bash
+python scripts/train_grpo_trl.py --config configs/grpo_ehrgym.yaml
+```
+
+### Python API (rollout_func pattern)
+
+```python
+from ehrgym import EHRGymEnv
+from trl import GRPOTrainer, GRPOConfig
+from trl.experimental.openenv import generate_rollout_completions
+
+def rollout_func(prompts, trainer):
+    # For each prompt, run a full EHR episode
+    # Parse model outputs into browser actions (navigate, click, type, press)
+    # Step through the environment and collect rewards
+    # Return prompt_ids, completion_ids, logprobs, env_mask, and reward fields
+    ...
+
+trainer = GRPOTrainer(
+    model="Qwen/Qwen3-1.7B",
+    reward_funcs=[reward_task, reward_format, reward_efficiency],
+    train_dataset=dataset,
+    args=GRPOConfig(
+        max_completion_length=4096,
+        use_vllm=True,
+        vllm_mode="colocate",
+    ),
+    rollout_func=rollout_func,
+)
+trainer.train()
+```
+
+For the complete `rollout_func` implementation with `env_mask` and multi-turn interaction, see the [starter notebook](notebooks/ehrgym_grpo_training.ipynb).
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────┐
+│  Training (GPU Machine)                             │
+│  ┌───────────────────────────────────────────────┐  │
+│  │  TRL GRPOTrainer                              │  │
+│  │  ┌─────────┐  ┌───────────┐  ┌────────────┐  │  │
+│  │  │  Model   │→ │ Tool Calls │→ │ EHRGymEnv  │  │  │
+│  │  │ (Qwen3) │← │ (navigate, │← │ (HTTP      │  │  │
+│  │  │         │  │  click,    │  │  client)   │  │  │
+│  │  │         │  │  type_text,│  │            │  │  │
+│  │  │         │  │  press_key)│  │            │  │  │
+│  │  └─────────┘  └───────────┘  └──────┬─────┘  │  │
+│  └──────────────────────────────────────┼────────┘  │
+└─────────────────────────────────────────┼───────────┘
+                                          │ HTTP
+┌─────────────────────────────────────────┼───────────┐
+│  EHRGym Server (Docker / HF Space)      │           │
+│  ┌──────────────────────────────────────┼────────┐  │
+│  │  FastAPI env server (:8000)          ▼        │  │
+│  │  /reset  /step  /state                        │  │
+│  │  ┌────────────────────────────────────────┐   │  │
+│  │  │  Playwright (headless Chromium)        │   │  │
+│  │  │  → Next.js EHR app (:3000)            │   │  │
+│  │  └────────────────────────────────────────┘   │  │
+│  └───────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────┘
+```
+
+### 25 Clinical Tasks
+
+The environment ships with 25 clinical tasks across three difficulty levels:
+
+| Difficulty | Tasks | Notes | Rubric Items |
+|------------|-------|-------|--------------|
+| Basic      | 8     | 3     | ~5           |
+| Medium     | 9     | 4-5   | ~10          |
+| Hard       | 8     | 6-7   | ~10          |
+
+Tasks include AKI, DKA, pneumonia, CHF, COPD, stroke, GI bleed, PE, sepsis, and more.
 
 ---
 

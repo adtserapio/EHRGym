@@ -1,0 +1,104 @@
+{
+  "task_id": "asthma-exacerbation-rollout",
+  "description": "Synthetic rollout for Severe asthma \u2014 IV magnesium and systemic steroids. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1019"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1019']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports progressive wheezing and dyspnea over 6 hours. Used rescue inhaler 8 times without improvement. Unable to speak in full sentences.\nO: Peak flow 150 L/min (35% predicted). ABG with pCO2 interpretation: pCO2 42 \u2014 normal but concerning in setting of acute asthma (expected hypocapnia), suggests impending respiratory failure. Accessory muscle use: sternocleidomastoid and intercostal retractions present. SpO2 90% on 4L NC. Breath sounds: diffuse expiratory wheezes, poor air movement bilaterally.\nA: Severe acute asthma exacerbation (near-fatal features: normalizing pCO2, poor air movement). Steroid therapy: IV methylprednisolone for severe exacerbation refractory to bronchodilators. Bronchodilator response: minimal improvement after 3 rounds of albuterol/ipratropium. Intubation readiness: RSI equipment at bedside given impending respiratory failure risk.\nP: Magnesium sulfate IV 2g over 20 minutes. Methylprednisolone IV 125mg now. Continuous albuterol nebulization. Steroid therapy: continue IV steroids q6h, transition to PO prednisone when improving. Bronchodilator response: reassess in 1 hour. Intubation readiness: anesthesia notified, ketamine preferred induction agent if needed. ICU bed requested."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Magnesium sulfate IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Severe asthma management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Methylprednisolone IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Severe asthma management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

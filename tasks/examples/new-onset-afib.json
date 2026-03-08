@@ -1,0 +1,34 @@
+{
+  "id": "new-onset-afib",
+  "title": "New-onset AFib with RVR \u2014 rate control and stroke risk",
+  "patient_id": "pat-1011",
+  "encounter_id": "enc-1011",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review electrolytes, thyroid function, and telemetry, place IV diltiazem and potassium repletion, document the rhythm analysis, CHA2DS2-VASc score, rate control strategy, and anticoagulation decision, then sign the encounter.",
+  "required_orders": [
+    "Diltiazem IV",
+    "Potassium chloride IV"
+  ],
+  "required_note_elements": [
+    "Heart rate",
+    "Rhythm interpretation",
+    "CHA2DS2-VASc score",
+    "Rate control strategy",
+    "Anticoagulation decision",
+    "Hemodynamic stability"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Diltiazem IV": 0.13,
+      "order:Potassium chloride IV": 0.05,
+      "note_element:Heart rate": 0.09,
+      "note_element:Rhythm interpretation": 0.1,
+      "note_element:CHA2DS2-VASc score": 0.12,
+      "note_element:Rate control strategy": 0.12,
+      "note_element:Anticoagulation decision": 0.12,
+      "note_element:Hemodynamic stability": 0.08,
+      "encounter_signed": 0.19
+    }
+  }
+}

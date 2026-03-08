@@ -115,14 +115,17 @@ def obs_to_text(obs: dict) -> str:
 # ---------------------------------------------------------------------------
 
 def valid_json_reward(completions: list, **kwargs) -> list[float]:
-    """Reward: is the model output valid JSON with a 'type' field?"""
+    """Reward: is the model output valid JSON with a 'type' field?
+
+    Scale: [-1.0, +0.5]  (format correctness is a prerequisite, not the goal)
+    """
     scores = []
     for completion in completions:
         text = completion[0]["content"] if isinstance(completion, list) else completion
         try:
             parsed = json.loads(text)
             if "type" in parsed:
-                scores.append(1.0)
+                scores.append(0.5)
             else:
                 scores.append(-0.5)
         except (json.JSONDecodeError, TypeError):
@@ -131,19 +134,32 @@ def valid_json_reward(completions: list, **kwargs) -> list[float]:
 
 
 def action_type_reward(completions: list, **kwargs) -> list[float]:
-    """Reward: does the action use a valid EHRGym action type?"""
+    """Reward: does the action use a valid type AND include required fields?
+
+    Scale: [-0.5, +0.5]  (valid action structure is necessary but not sufficient)
+    """
     valid_types = {"click", "fill", "keypress", "goto", "wait"}
+    required_fields = {
+        "click": ["selector"], "fill": ["selector", "text"],
+        "keypress": ["key"], "goto": ["url"], "wait": [],
+    }
     scores = []
     for completion in completions:
         text = completion[0]["content"] if isinstance(completion, list) else completion
         try:
             parsed = json.loads(text)
-            if parsed.get("type") in valid_types:
-                scores.append(1.0)
+            action_type = parsed.get("type")
+            if action_type not in valid_types:
+                scores.append(-0.5)
+                continue
+            # Check that required fields are present and non-empty
+            fields = required_fields.get(action_type, [])
+            if all(parsed.get(f) for f in fields):
+                scores.append(0.5)
             else:
-                scores.append(-1.0)
+                scores.append(0.0)  # right type but incomplete
         except Exception:
-            scores.append(-1.0)
+            scores.append(-0.5)
     return scores
 
 
@@ -152,13 +168,12 @@ def rubric_progress_reward(completions: list, **kwargs) -> list[float]:
     Reward: execute the action against the live env and return rubric reward.
     This is the main task reward — it actually steps the environment.
     
-    NOTE: For GRPO with num_generations > 1, each completion gets the same
-    starting state (we reset before each prompt). This function is called
-    once per batch, so we run one episode per completion.
+    For each completion we reset the env first so every candidate starts from
+    the same state (critical for GRPO where multiple completions share the same
+    prompt).  The env now returns an incremental reward and a breakdown in info.
     """
     env_url = kwargs.get("env_url", ENV_SERVER)
     task_id = kwargs.get("task_id", TASK_ID)
-    max_steps = kwargs.get("max_episode_steps", 25)
     
     scores = []
     for completion in completions:
@@ -170,11 +185,14 @@ def rubric_progress_reward(completions: list, **kwargs) -> list[float]:
             continue
         
         try:
+            # Reset before each completion so state is clean
+            env_reset(env_url, task_id)
             # Step the environment with this single action
             result = env_step(env_url, action)
+            # The env now returns a well-calibrated incremental reward
             reward = result.get("reward", 0.0)
-            # Scale reward: rubric items are worth a lot
-            scores.append(reward * 10.0)
+            # Amplify to make the rubric signal dominant over format rewards
+            scores.append(reward * 5.0)
         except Exception as e:
             log.warning("Env step failed: %s", e)
             scores.append(-1.0)
@@ -302,9 +320,9 @@ def main() -> None:
         args=training_args,
         train_dataset=dataset,
         reward_funcs=[
-            valid_json_reward,       # +1 for valid JSON with "type"
-            action_type_reward,      # +1 for valid action type
-            rubric_progress_reward,  # +N for actual rubric progress
+            valid_json_reward,       # [-1.0, +0.5] format correctness
+            action_type_reward,      # [-0.5, +0.5] valid type + required fields
+            rubric_progress_reward,  # [-2.0, +5.0] actual task rubric (dominant)
         ],
     )
 

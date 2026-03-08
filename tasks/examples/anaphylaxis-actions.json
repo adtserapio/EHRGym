@@ -1,0 +1,104 @@
+{
+  "task_id": "anaphylaxis-rollout",
+  "description": "Synthetic rollout for Anaphylaxis \u2014 epinephrine infusion and allergen documentation. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1017"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1017']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient ate shrimp 30 minutes ago, developed diffuse urticaria, lip swelling, throat tightness, and difficulty breathing. EpiPen administered by paramedics en route.\nO: Causative agent: shrimp (shellfish) \u2014 confirmed food allergy trigger. Anaphylaxis criteria: met \u2014 acute onset with skin involvement (urticaria), respiratory compromise (stridor, wheezing), and hypotension (BP 82/50). Airway assessment: stridor improved post-epinephrine, no intubation required currently but equipment at bedside. Epinephrine administration: IM epi given prehospital, repeat dose given in ED. Hemodynamic response: BP improved to 102/68 after IV fluids and epi.\nA: Anaphylaxis secondary to shellfish ingestion. Biphasic reaction monitoring: must observe minimum 6 hours given severity, risk of recurrence.\nP: Epinephrine IV drip at 0.1 mcg/kg/min, titrate to MAP >65. Methylprednisolone IV 125mg to prevent biphasic reaction. Famotidine 20mg IV. Continuous monitoring. Biphasic reaction monitoring: observe minimum 6 hours. Allergen documentation in chart. EpiPen prescription and allergy clinic referral at discharge."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Epinephrine IV drip"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "Per protocol, titrate to goal"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Anaphylaxis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Methylprednisolone IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Anaphylaxis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "task_id": "cap-pneumonia-followup-rollout",
+  "description": "Synthetic rollout for CAP \u2014 antibiotic stewardship and imaging follow-up. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1002"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1002']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports improved cough, less sputum production. Still with mild dyspnea on exertion. Tolerating PO antibiotics.\nO: Antibiotic exposure: completed 48 hours of IV ceftriaxone/azithromycin, transitioned to PO amoxicillin-clavulanate. Respiratory symptoms: RR 18, SpO2 96% on RA, diminished breath sounds at right base. Temp 37.2.\nA: Community-acquired pneumonia, improving on appropriate antibiotic therapy. Clinical response adequate at 48 hours.\nP: Chest X-ray to assess interval change. Follow-up plan: complete 5-day total antibiotic course. If continued improvement, discharge with PO antibiotics and PCP follow-up in 1 week."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Chest X-ray"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "IMAGING"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for CAP management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

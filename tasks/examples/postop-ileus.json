@@ -1,0 +1,28 @@
+{
+  "id": "postop-ileus",
+  "title": "Post-op ileus \u2014 decompression and electrolyte correction",
+  "patient_id": "pat-1025",
+  "encounter_id": "enc-1025",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review post-operative labs and imaging, place NGT decompression and IV potassium repletion, document the bowel status, electrolyte plan, and NPO rationale, then sign the encounter.",
+  "required_orders": [
+    "Nasogastric tube placement",
+    "Potassium chloride IV"
+  ],
+  "required_note_elements": [
+    "Bowel function status",
+    "Electrolyte correction",
+    "NPO status"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Nasogastric tube placement": 0.18,
+      "order:Potassium chloride IV": 0.12,
+      "note_element:Bowel function status": 0.15,
+      "note_element:Electrolyte correction": 0.13,
+      "note_element:NPO status": 0.12,
+      "encounter_signed": 0.3
+    }
+  }
+}

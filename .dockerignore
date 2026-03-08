@@ -1,0 +1,14 @@
+node_modules/
+.next/
+build/
+dist/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.git/
+.DS_Store
+runs/
+*.egg-info/
+prisma/dev.db
+prisma/dev.db-journal

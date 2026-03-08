@@ -1,0 +1,104 @@
+{
+  "task_id": "hyperkalemia-rollout",
+  "description": "Synthetic rollout for Hyperkalemia \u2014 emergent cardiac stabilization. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1015"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1015']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports generalized weakness and paresthesias in hands. Missed dialysis session 2 days ago. History of CKD stage 4 and heart failure.\nO: Potassium level 7.1 mEq/L. ECG changes: peaked T waves, widened QRS (130ms), loss of P waves. Cr 5.8, BUN 72. No ST changes suggestive of ischemia.\nA: Severe hyperkalemia with cardiac toxicity. Emergent management required immediately given ECG changes. Potassium shifting agents: insulin/dextrose and sodium bicarbonate to temporize while arranging dialysis.\nP: Calcium gluconate IV 2g over 5 minutes for cardiac membrane stabilization. Insulin and dextrose IV: regular insulin 10 units IV + D50 50mL. Sodium bicarbonate 50 mEq IV. Albuterol nebulizer 10mg. Kayexalate 30g PO. Emergent nephrology consult for dialysis. Continuous telemetry. Repeat K+ in 1 hour."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Calcium gluconate IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Hyperkalemia management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Insulin and dextrose IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Hyperkalemia management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "task_id": "sickle-cell-crisis-rollout",
+  "description": "Synthetic rollout for Sickle cell VOC \u2014 pain management and ACS screening. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1023"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1023']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports severe bilateral lower extremity and back pain since yesterday, rated 10/10. Usual crisis pattern. Denies cough, chest pain, or fever. Last crisis was 3 months ago.\nO: Hemoglobin baseline 8.2 (current 7.4, below baseline). Pain assessment: 10/10 bilateral legs and back, consistent with prior VOC pattern. Acute chest syndrome screening: CXR clear, no infiltrates, SpO2 96% on RA, no chest pain, temp 37.1. Morphine allergy and opioid selection: documented morphine allergy (causes severe itching and hives) \u2014 hydromorphone selected. Reticulocyte count 8.2%. LDH 340.\nA: Vaso-occlusive crisis, uncomplicated. Hemoglobin below baseline. Acute chest syndrome screening negative but must continue monitoring. Transfusion threshold: consider transfusion if Hgb drops below 6 or develops ACS.\nP: Hydromorphone PCA per sickle cell protocol (demand dose 0.2mg, lockout 8 min). Chest X-ray to rule out ACS (clear currently). Morphine allergy and opioid selection: hydromorphone is appropriate alternative. IV fluids at 1.5x maintenance. Incentive spirometry q2h for ACS prevention. Transfusion threshold: transfuse if Hgb <6 or signs of ACS. Daily CBC, retic, LDH."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Hydromorphone PCA"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "Per sickle cell pain protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Sickle cell VOC management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Chest X-ray"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "IMAGING"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Sickle cell VOC management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

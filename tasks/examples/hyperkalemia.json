@@ -1,0 +1,30 @@
+{
+  "id": "hyperkalemia",
+  "title": "Hyperkalemia \u2014 emergent cardiac stabilization",
+  "patient_id": "pat-1015",
+  "encounter_id": "enc-1015",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review potassium and ECG, place emergent calcium gluconate and insulin-dextrose, document the potassium level, ECG changes, and management cascade, then sign the encounter.",
+  "required_orders": [
+    "Calcium gluconate IV",
+    "Insulin and dextrose IV"
+  ],
+  "required_note_elements": [
+    "Potassium level",
+    "ECG changes",
+    "Emergent management",
+    "Potassium shifting agents"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Calcium gluconate IV": 0.18,
+      "order:Insulin and dextrose IV": 0.12,
+      "note_element:Potassium level": 0.12,
+      "note_element:ECG changes": 0.12,
+      "note_element:Emergent management": 0.1,
+      "note_element:Potassium shifting agents": 0.1,
+      "encounter_signed": 0.26
+    }
+  }
+}

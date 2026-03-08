@@ -1,0 +1,104 @@
+{
+  "task_id": "chf-exacerbation-rollout",
+  "description": "Synthetic rollout for CHF exacerbation \u2014 IV diuresis and volume management. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1007"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1007']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports progressive dyspnea on exertion over 1 week, now short of breath at rest. Three-pillow orthopnea, PND. Gained 8 lbs in 5 days. Ate high-sodium foods. Missed 2 days of diuretics.\nO: BNP level 1840 pg/mL (baseline 200). Volume status: JVP elevated to 14 cm, 2+ bilateral lower extremity edema, bibasilar crackles. Daily weight trend: 85 -> 87 -> 89 -> 92 kg. Ejection fraction 25% on last echo (6 months ago). SpO2 91% on 2L NC.\nA: Acute decompensated heart failure, NYHA class IV. Triggered by dietary indiscretion and medication non-adherence. Diuretic plan: aggressive IV diuresis targeting 1-2L net negative per day.\nP: Furosemide IV 80mg bolus now (2x home dose), then 40mg IV q8h. Basic metabolic panel q12h for electrolyte monitoring. Strict I/Os, daily weights. Fluid restrict 1.5L/day. Sodium restrict <2g/day. Resume home ACEi and BB once euvolemic. Echo if not improving."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Furosemide IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for CHF exacerbation management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Basic metabolic panel"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "LAB"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for CHF exacerbation management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

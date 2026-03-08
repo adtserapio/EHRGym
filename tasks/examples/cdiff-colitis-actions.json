@@ -1,0 +1,104 @@
+{
+  "task_id": "cdiff-colitis-rollout",
+  "description": "Synthetic rollout for C. difficile colitis \u2014 severity-guided oral vancomycin. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1021"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1021']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports 8 episodes of watery diarrhea daily for 3 days. Recently completed a course of ciprofloxacin for UTI 1 week ago. Abdominal cramping and low-grade fever.\nO: C. diff severity: WBC 22.4, creatinine 1.6 (above baseline of 1.0), temperature 38.4 \u2014 meets criteria for severe C. difficile infection. Prior antibiotic exposure: ciprofloxacin completed 7 days ago (high-risk fluoroquinolone). CT shows colonic wall thickening without megacolon.\nA: Severe C. difficile colitis per IDSA criteria (WBC >15K, Cr >1.5x baseline). Oral vancomycin plan: first-line for severe C. diff per IDSA/SHEA 2021 guidelines.\nP: Vancomycin oral 125mg QID for 10 days. CT abdomen pelvis to rule out toxic megacolon and complications. Contact precautions. Rehydrate aggressively. Probiotics are NOT recommended during active infection. Oral vancomycin plan: if no improvement in 48 hours, escalate to vancomycin 500mg QID + IV metronidazole. Monitor for fulminant disease."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Vancomycin oral"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "PO, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for C. difficile colitis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "CT abdomen pelvis"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "IMAGING"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for C. difficile colitis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

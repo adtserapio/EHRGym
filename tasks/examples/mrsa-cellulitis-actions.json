@@ -1,0 +1,104 @@
+{
+  "task_id": "mrsa-cellulitis-rollout",
+  "description": "Synthetic rollout for MRSA cellulitis \u2014 empiric coverage with allergy consideration. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1014"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1014']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports spreading redness and warmth on right lower leg for 3 days, worsening despite oral cephalexin. Purulent drainage from a central site. History of prior MRSA infection 1 year ago.\nO: Erythema 12x8 cm with central fluctuance, warmth, and tenderness. MRSA risk factors: prior MRSA infection, failed outpatient beta-lactam therapy. WBC 13.2. No crepitus. Allergy consideration: patient reports sulfa allergy (rash, non-anaphylactic) \u2014 TMP-SMX avoided.\nA: Purulent cellulitis with high suspicion for MRSA. Antibiotic selection: vancomycin IV given failed outpatient therapy, prior MRSA, and allergy consideration limiting oral alternatives.\nP: Vancomycin IV dosed by pharmacy per weight/renal function. Wound culture of purulent drainage for sensitivities. Mark erythema borders. Elevate extremity. I&D if fluctuance increases. Trough level before 4th dose."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Vancomycin IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for MRSA cellulitis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Wound culture"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "LAB"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for MRSA cellulitis management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

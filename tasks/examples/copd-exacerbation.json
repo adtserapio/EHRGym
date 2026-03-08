@@ -1,0 +1,30 @@
+{
+  "id": "copd-exacerbation",
+  "title": "COPD exacerbation \u2014 systemic steroids and bronchodilators",
+  "patient_id": "pat-1006",
+  "encounter_id": "enc-1006",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review the ABG showing hypercapnic respiratory failure, place IV steroids and nebulizer, document the respiratory acidosis, ABG findings, oxygen needs, and steroid plan, then sign the encounter.",
+  "required_orders": [
+    "Methylprednisolone IV",
+    "Albuterol nebulizer"
+  ],
+  "required_note_elements": [
+    "Respiratory acidosis",
+    "ABG interpretation",
+    "Oxygen requirements",
+    "Steroid plan"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Methylprednisolone IV": 0.15,
+      "order:Albuterol nebulizer": 0.1,
+      "note_element:Respiratory acidosis": 0.14,
+      "note_element:ABG interpretation": 0.12,
+      "note_element:Oxygen requirements": 0.1,
+      "note_element:Steroid plan": 0.12,
+      "encounter_signed": 0.27
+    }
+  }
+}

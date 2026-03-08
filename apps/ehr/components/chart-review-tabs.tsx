@@ -129,7 +129,6 @@ export function ChartReviewTabs({ encounters, labs, notes }: ChartReviewTabsProp
               <th>Test</th>
               <th>Value</th>
               <th>Reference</th>
-              <th>LOINC</th>
             </tr>
           </thead>
           <tbody>
@@ -141,7 +140,6 @@ export function ChartReviewTabs({ encounters, labs, notes }: ChartReviewTabsProp
                   {lab.value} {lab.unit}
                 </td>
                 <td>{lab.referenceRange}</td>
-                <td>{lab.loinc ?? "—"}</td>
               </tr>
             ))}
           </tbody>

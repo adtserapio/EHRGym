@@ -1,0 +1,104 @@
+{
+  "task_id": "pe-workup-rollout",
+  "description": "Synthetic rollout for PE \u2014 diagnostic imaging and empiric anticoagulation. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1008"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1008']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient reports sudden-onset pleuritic chest pain and dyspnea since this morning. Recent 12-hour flight 5 days ago. No calf swelling noticed.\nO: D-dimer elevation: 4200 ng/mL (normal <500). Wells score: 6 (recent travel, HR>100, clinical signs of DVT absent, PE most likely diagnosis). Hypoxia evaluation: SpO2 91% on RA, ABG pO2 62. HR 108. Right heart strain: troponin mildly elevated at 0.08, BNP 340.\nA: Acute pulmonary embolism, confirmed. Submassive PE given RV strain markers. Anticoagulation plan: systemic anticoagulation indicated; no contraindications identified.\nP: CT angiography chest confirmed bilateral PE. Heparin drip per PE protocol with target aPTT 60-80. Echocardiogram to evaluate RV function. Transition to DOAC upon clinical stability. IVC filter discussion if anticoagulation contraindicated. Monitor for hemodynamic deterioration."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "CT angiography chest"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "IMAGING"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "STAT"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for PE management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Heparin drip"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "Per protocol, titrate to goal"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for PE management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

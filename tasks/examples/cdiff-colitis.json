@@ -1,0 +1,28 @@
+{
+  "id": "cdiff-colitis",
+  "title": "C. difficile colitis \u2014 severity-guided oral vancomycin",
+  "patient_id": "pat-1021",
+  "encounter_id": "enc-1021",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review C. diff PCR and severity markers (WBC, creatinine), place oral vancomycin and CT abdomen, document the severity classification, prior antibiotic exposure, and treatment plan, then sign the encounter.",
+  "required_orders": [
+    "Vancomycin oral",
+    "CT abdomen pelvis"
+  ],
+  "required_note_elements": [
+    "C. diff severity",
+    "Prior antibiotic exposure",
+    "Oral vancomycin plan"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Vancomycin oral": 0.18,
+      "order:CT abdomen pelvis": 0.12,
+      "note_element:C. diff severity": 0.18,
+      "note_element:Prior antibiotic exposure": 0.12,
+      "note_element:Oral vancomycin plan": 0.12,
+      "encounter_signed": 0.28
+    }
+  }
+}

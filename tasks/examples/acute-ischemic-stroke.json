@@ -1,0 +1,36 @@
+{
+  "id": "acute-ischemic-stroke",
+  "title": "Acute ischemic stroke \u2014 thrombolysis decision",
+  "patient_id": "pat-1013",
+  "encounter_id": "enc-1013",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review CT head, INR, platelets, and glucose, assess tPA eligibility, place alteplase and CTA orders, document the NIHSS, time last known well, contraindication screen, eligibility determination, BP management, and neurology consultation, then sign the encounter.",
+  "required_orders": [
+    "Alteplase IV",
+    "CT angiography head and neck"
+  ],
+  "required_note_elements": [
+    "NIHSS score",
+    "Time last known well",
+    "CT head interpretation",
+    "tPA contraindication screen",
+    "tPA eligibility",
+    "Blood pressure management",
+    "Neurology consultation"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Alteplase IV": 0.16,
+      "order:CT angiography head and neck": 0.05,
+      "note_element:NIHSS score": 0.09,
+      "note_element:Time last known well": 0.1,
+      "note_element:CT head interpretation": 0.08,
+      "note_element:tPA contraindication screen": 0.1,
+      "note_element:tPA eligibility": 0.09,
+      "note_element:Blood pressure management": 0.08,
+      "note_element:Neurology consultation": 0.06,
+      "encounter_signed": 0.19
+    }
+  }
+}

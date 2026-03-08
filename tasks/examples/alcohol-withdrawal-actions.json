@@ -1,0 +1,104 @@
+{
+  "task_id": "alcohol-withdrawal-rollout",
+  "description": "Synthetic rollout for Alcohol withdrawal \u2014 CIWA-guided benzodiazepine protocol. Reviews chart, writes progress note, places orders, and signs the encounter.",
+  "reset_request": {
+    "patient_id": "pat-1020"
+  },
+  "actions": [
+    {
+      "type": "click",
+      "selector": "[data-testid='patient-card-pat-1020']"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-notes']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note author']",
+      "text": "Patrick Sullivan, MD"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Note title']",
+      "text": "Progress Note"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Progress note content']",
+      "text": "S: Patient admitted for elective surgery, last drink approximately 18 hours ago. Developing progressive tremor, anxiety, and diaphoresis. History of prior withdrawal seizures and one episode of delirium tremens in 2023.\nO: CIWA score 24 (severe withdrawal). Vitals: HR 118, BP 162/98, temp 37.8. Seizure history: prior DT and withdrawal seizures \u2014 high risk for complicated withdrawal. Last drink timing: 18 hours, consistent with onset of major withdrawal symptoms. Magnesium 1.3, phosphate 2.0 (both low). LFTs: AST 98, ALT 64. Platelets 112K.\nA: Acute alcohol withdrawal, severe (CIWA 24). Delirium tremens risk: HIGH given prior history of DTs and seizures. Benzodiazepine plan: symptom-triggered protocol with CIWA scoring q1h, lorazepam preferred given hepatic impairment.\nP: Lorazepam IV 2mg q1h for CIWA >15, may repeat q15 min for CIWA >20. Thiamine IV 500mg daily x3 days (high-dose for Wernicke prophylaxis). Folate, MgSO4, and phosphate repletion. Benzodiazepine plan: CIWA-guided dosing with 1:1 sitter. Delirium tremens risk: ICU transfer if CIWA remains >25 or benzodiazepine requirement exceeds 10mg in first hour. Seizure precautions."
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-note-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='activity-orders']"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Lorazepam IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Alcohol withdrawal management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order name']",
+      "text": "Thiamine IV"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order category']",
+      "text": "MED"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order parameters']",
+      "text": "IV, per protocol"
+    },
+    {
+      "type": "fill",
+      "selector": "[aria-label='Order rationale']",
+      "text": "Indicated for Alcohol withdrawal management"
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='save-order-button']"
+    },
+    {
+      "type": "wait",
+      "milliseconds": 600
+    },
+    {
+      "type": "click",
+      "selector": "[data-testid='sign-encounter-button']"
+    }
+  ]
+}

@@ -32,6 +32,7 @@ class EnvironmentState(BaseModel):
     patient_id: Optional[str] = None
     encounter_id: Optional[str] = None
     scenario_id: Optional[str] = None
+    task_id: Optional[str] = None
     rubric_progress: list[str] = Field(default_factory=list)
     cumulative_reward: float = 0.0
 
@@ -39,6 +40,7 @@ class EnvironmentState(BaseModel):
 class ResetRequest(BaseModel):
     patient_id: Optional[str] = None
     scenario_id: Optional[str] = None
+    task_id: Optional[str] = None
 
 
 class ResetResponse(BaseModel):

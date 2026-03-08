@@ -1,9 +1,10 @@
 {
   "id": "aki-chart-review",
-  "title": "AKI chart review to note and orders",
+  "title": "AKI chart review \u2014 fluid resuscitation and renal monitoring",
   "patient_id": "pat-1001",
   "encounter_id": "enc-1001",
-  "objective": "Review the patient chart, identify the rising creatinine, place fluid and repeat BMP orders, then sign the encounter.",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review the creatinine trend and urine output, assess volume status, place IV fluid and repeat BMP orders, document your renal assessment with differential, then sign the encounter.",
   "required_orders": [
     "Basic metabolic panel",
     "Normal saline bolus"
@@ -11,16 +12,19 @@
   "required_note_elements": [
     "Creatinine trend",
     "Volume assessment",
-    "Plan for repeat labs"
+    "Urine output",
+    "AKI differential diagnosis"
   ],
   "scoring": {
     "base_reward": 1.0,
     "substeps": {
-      "chart_navigation": 0.1,
-      "target_lab_identified": 0.2,
-      "required_order_added": 0.3,
-      "note_grounded": 0.2,
-      "encounter_signed": 0.2
+      "order:Normal saline bolus": 0.15,
+      "order:Basic metabolic panel": 0.08,
+      "note_element:Creatinine trend": 0.15,
+      "note_element:Volume assessment": 0.13,
+      "note_element:Urine output": 0.1,
+      "note_element:AKI differential diagnosis": 0.14,
+      "encounter_signed": 0.25
     }
   }
 }

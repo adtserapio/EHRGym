@@ -131,18 +131,24 @@ export function PatientWorkspace({ initialPatient }: PatientWorkspaceProps) {
   ];
 
   const noteText = activeEncounter?.notes.map((note) => note.content).join("\n") ?? "";
+  const ordersComplete = requiredOrders.length === 0 || requiredOrders.every((ro) => activeEncounter?.orders.some((o) => o.name === ro && o.status === "SIGNED"));
+  const notesComplete = requiredNoteElements.length === 0 || requiredNoteElements.every((el) => noteText.toLowerCase().includes(el.toLowerCase()));
+  const encounterSigned = activeEncounter?.status === "SIGNED";
+  const hasLabs = (activeEncounter?.labs.length ?? 0) > 0;
+
+  // Map each rubric item to a completion check based on its keywords
   const completedRubric = new Set<string>();
-  if (requiredOrders.every((requiredOrder) => activeEncounter?.orders.some((order) => order.name === requiredOrder && order.status === "SIGNED"))) {
-    completedRubric.add("Order isotonic fluids or repeat BMP");
-  }
-  if (requiredNoteElements.every((element) => noteText.toLowerCase().includes(element.toLowerCase()))) {
-    completedRubric.add("Document likely pre-renal AKI in assessment");
-  }
-  if (activeEncounter?.status === "SIGNED") {
-    completedRubric.add("Sign the encounter");
-  }
-  if ((activeEncounter?.labs.length ?? 0) > 0) {
-    completedRubric.add("Identify most recent creatinine");
+  for (const item of rubric) {
+    const lower = item.toLowerCase();
+    if (lower.includes("sign") && lower.includes("encounter")) {
+      if (encounterSigned) completedRubric.add(item);
+    } else if (lower.includes("order") || lower.includes("place")) {
+      if (ordersComplete) completedRubric.add(item);
+    } else if (lower.includes("document") || lower.includes("note") || lower.includes("write")) {
+      if (notesComplete) completedRubric.add(item);
+    } else if (lower.includes("review") || lower.includes("identify") || lower.includes("assess")) {
+      if (hasLabs) completedRubric.add(item);
+    }
   }
 
   if (!activeEncounter) {
@@ -306,7 +312,7 @@ export function PatientWorkspace({ initialPatient }: PatientWorkspaceProps) {
           }
         ]}
         footerTitle="Active Visit"
-        footerText={`${activeEncounter.reasonForVisit} · ${activeEncounter.provider}`}
+        footerText={`${activeEncounter.reasonForVisit} · Patrick Sullivan, MD`}
         footerAction="Return to Worklist"
         footerHref="/"
       />
@@ -320,14 +326,11 @@ export function PatientWorkspace({ initialPatient }: PatientWorkspaceProps) {
             <ActivityNav items={globalNavItems} className="workspace-pills" ariaLabel="Chart navigation" defaultHref="#chart-review" />
           </div>
           <div className="workspace-header__actions">
-            <a href="#encounter" className="workspace-toggle">
-              {activeEncounter.status}
-            </a>
             <div className="workspace-profile workspace-profile--compact">
-              <div className="workspace-profile__avatar">{patient.fullName.slice(0, 1)}</div>
+              <div className="workspace-profile__avatar">PS</div>
               <div>
-                <strong>{activeEncounter.provider}</strong>
-                <p>{formatDateTime(new Date(activeEncounter.startedAt))}</p>
+                <strong>Patrick Sullivan, MD</strong>
+                <p>Attending Physician</p>
               </div>
             </div>
           </div>
@@ -356,10 +359,14 @@ export function PatientWorkspace({ initialPatient }: PatientWorkspaceProps) {
               <strong>Visit focus</strong>
               <span>{scenario?.title ?? activeEncounter.type}</span>
             </div>
+            <div className="patient-hero__panel">
+              <strong>Admitting</strong>
+              <span>{activeEncounter.provider}</span>
+            </div>
             <div className="patient-hero__panel patient-hero__panel--status">
-              <strong>Status</strong>
+              <strong>Visit Status</strong>
               <span className="status-pill" data-status={activeEncounter.status}>
-                {activeEncounter.status}
+                {activeEncounter.status === "SIGNED" ? "Signed" : activeEncounter.status === "OPEN" ? "In Progress" : activeEncounter.status}
               </span>
             </div>
           </div>
@@ -367,22 +374,7 @@ export function PatientWorkspace({ initialPatient }: PatientWorkspaceProps) {
 
         <ActivityNav items={activityNavItems} className="chart-activity-bar workspace-pills workspace-pills--wide" ariaLabel="Activity navigation" defaultHref="#summary" />
 
-        <section className="metric-grid metric-grid--chart">
-          <SectionCard title="Visit Goal" subtitle="Immediate objective" testId="scenario-brief" className="metric-card metric-card--wide">
-            <div id="summary" className="metric-card__stack">
-              <strong>{scenario?.objective ?? "Continue chart review and complete documentation."}</strong>
-              <p>{patient.summary}</p>
-            </div>
-          </SectionCard>
-          <SectionCard title="Pending Orders" subtitle="Expected for this visit" className="metric-card">
-            <div className="metric-card__value">{requiredOrders.length}</div>
-            <p>{requiredOrders.slice(0, 2).join(" · ") || "No required orders"}</p>
-          </SectionCard>
-          <SectionCard title="Documentation" subtitle="Expected note elements" className="metric-card">
-            <div className="metric-card__value">{requiredNoteElements.length}</div>
-            <p>{requiredNoteElements[0] ?? "Note ready for completion"}</p>
-          </SectionCard>
-        </section>
+        <div id="summary" />
 
         <div className="content-grid content-grid--chart">
           <div className="content-stack">
@@ -398,7 +390,7 @@ export function PatientWorkspace({ initialPatient }: PatientWorkspaceProps) {
                   <div className="form-grid">
                     <label className="field">
                       <span className="muted">Author</span>
-                      <input aria-label="Note author" name="author" defaultValue="Resident Physician" required />
+                      <input aria-label="Note author" name="author" defaultValue="Attending Physician" required />
                     </label>
                     <label className="field">
                       <span className="muted">Title</span>
@@ -409,7 +401,7 @@ export function PatientWorkspace({ initialPatient }: PatientWorkspaceProps) {
                       <textarea
                         aria-label="Progress note content"
                         name="content"
-                        defaultValue={`S: \nO: Reviewed interval history and latest results.\nA: ${scenario?.title ?? activeEncounter.reasonForVisit}.\nP: `}
+                        defaultValue={`S:\nO:\nA:\nP:`}
                         required
                       />
                     </label>
@@ -467,12 +459,12 @@ export function PatientWorkspace({ initialPatient }: PatientWorkspaceProps) {
                       <textarea aria-label="Order rationale" name="rationale" placeholder="Why is this order needed?" required />
                     </label>
                     <label className="checkbox-field">
-                      <input className="checkbox-field__control" aria-label="Submit order for signature" name="submitForSignature" type="checkbox" />
-                      <span>Send directly for signature</span>
+                      <input className="checkbox-field__control" aria-label="Sign order immediately" name="submitForSignature" type="checkbox" defaultChecked />
+                      <span>Sign immediately</span>
                     </label>
                     <div className="form-actions">
                       <button className="primary-button" type="submit" data-testid="save-order-button" disabled={orderPending}>
-                        {orderPending ? "Saving order..." : "Accept order"}
+                        {orderPending ? "Placing order..." : "Place order"}
                       </button>
                     </div>
                   </div>
@@ -566,16 +558,6 @@ export function PatientWorkspace({ initialPatient }: PatientWorkspaceProps) {
                     <span>{diagnosis}</span>
                     <span className="problem-list__status problem-list__status--muted">Visit</span>
                   </div>
-                ))}
-              </div>
-            </SectionCard>
-
-            <SectionCard title="Orders to Review" subtitle="Expected for this visit" className="section-card--summary">
-              <div className="summary-flags">
-                {requiredOrders.map((item) => (
-                  <span key={item} className="summary-flag summary-flag--accent">
-                    {item}
-                  </span>
                 ))}
               </div>
             </SectionCard>

@@ -1,0 +1,32 @@
+{
+  "id": "hepatic-encephalopathy",
+  "title": "Hepatic encephalopathy \u2014 lactulose titration and rifaximin",
+  "patient_id": "pat-1016",
+  "encounter_id": "enc-1016",
+  "role": "Attending Physician",
+  "objective": "As the attending physician, review ammonia and hepatic function, place lactulose and rifaximin, document the encephalopathy grading, precipitant, and titration goals, then sign the encounter.",
+  "required_orders": [
+    "Lactulose oral",
+    "Rifaximin oral"
+  ],
+  "required_note_elements": [
+    "Ammonia level",
+    "Mental status changes",
+    "West Haven grade",
+    "Precipitant identification",
+    "Lactulose plan"
+  ],
+  "scoring": {
+    "base_reward": 1.0,
+    "substeps": {
+      "order:Lactulose oral": 0.14,
+      "order:Rifaximin oral": 0.09,
+      "note_element:Ammonia level": 0.12,
+      "note_element:Mental status changes": 0.1,
+      "note_element:West Haven grade": 0.1,
+      "note_element:Precipitant identification": 0.12,
+      "note_element:Lactulose plan": 0.1,
+      "encounter_signed": 0.23
+    }
+  }
+}
